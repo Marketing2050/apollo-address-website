@@ -1,0 +1,21 @@
+# Apollo Address - static site config for Cloudflare Workers (git-connected deploy)
+#
+# This file is what was missing. The build log shows:
+#   [ERROR] Could not detect a directory containing static files
+# That happens because "wrangler deploy" has no config telling it where
+# index.html and the assets/ folder actually are - so it tries to guess
+# and gives up. This file removes the guessing.
+#
+# Place this file at the ROOT of the GitHub repo - the same folder that
+# directly contains index.html, assets/, _redirects. Not inside a
+# subfolder. Commit and push; Cloudflare will pick it up on the next
+# build automatically since the repo is already connected.
+
+name = "apollo-address-website"
+compatibility_date = "2026-08-26"
+
+# No "main" entry point on purpose - this site has no server-side
+# Worker code to run, it's plain HTML/CSS/JS/video. Omitting "main"
+# tells Cloudflare this is static-assets-only.
+[assets]
+directory = "."
