@@ -262,7 +262,8 @@ h1{font-family:var(--serif);font-size:clamp(30px,8vw,38px);line-height:1;
    eyebrow tracking used everywhere else. */
 .eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:14px}
 .hero-tagline{font-family:var(--util);font-style:normal;font-weight:400;
-  letter-spacing:.6px;font-size:clamp(12.5px,3vw,14px);color:var(--gold);margin-bottom:16px}
+  letter-spacing:.6px;font-size:clamp(12.5px,3vw,14px);color:var(--cream-dk);margin-bottom:16px;
+  text-shadow:0 1px 12px rgba(42,21,35,.65)}
 .hero-sub{color:rgba(247,241,224,.92);font-size:14.5px;margin-bottom:18px}
 /* Bordered frame around the one fact that matters most - plot count
    and price - so it reads as a distinct card, the way a premium
@@ -553,16 +554,13 @@ body.locked{overflow:hidden}
 @media (min-width:1100px){
   .section{padding:104px 0}
   h1{font-size:60px} h2{font-size:46px}
-  /* Only reintroduce the local darkening panel at desktop widths - this
-     is specifically where a wide, short browser window can put the hero
-     text over a not-yet-darkened part of the frame. On phones the page
-     is always tall relative to its width, so the gradient alone already
-     gives enough contrast, and the extra panel just adds visual weight
-     nobody asked for. */
-  .hero-inner{max-width:760px;position:relative;padding:22px 26px;margin:-22px -26px}
-  .hero-inner::before{content:"";position:absolute;inset:0;z-index:-1;
-    background:rgba(20,10,17,.42);-webkit-backdrop-filter:brightness(.62) saturate(1.05);
-    backdrop-filter:brightness(.62) saturate(1.05)}
+  /* No local darkening panel at any breakpoint, per direct feedback -
+     the client prefers the cleaner look without a boxed backdrop, even
+     on the wide/short desktop windows where contrast was previously an
+     issue. That legibility gap is now closed a different way: the
+     specific line that was hard to read (the tagline) got its own
+     text-shadow and a brighter colour instead of a background panel. */
+  .hero-inner{max-width:760px}
   .split{gap:76px}
   .signature{min-height:640px;padding:80px 0}
   .gate-wrap{gap:76px}
