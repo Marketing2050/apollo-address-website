@@ -350,10 +350,10 @@ h1{font-family:var(--serif);font-size:clamp(30px,8vw,38px);line-height:1;
 .stats{background:var(--plum);color:var(--cream)}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr}
 .stat{padding:22px 16px;border-bottom:1px solid rgba(245,240,230,.18);
-  border-right:1px solid rgba(245,240,230,.18)}
+  border-right:1px solid rgba(245,240,230,.18);min-width:0}
 .stat:nth-child(2n){border-right:0} .stat:nth-last-child(-n+2){border-bottom:0}
-.stat b{display:block;font-family:var(--serif);font-weight:700;font-size:30px;
-  color:var(--cream);line-height:1;margin-bottom:5px;white-space:nowrap}
+.stat b{display:block;font-family:var(--serif);font-weight:700;font-size:clamp(20px,6.5vw,30px);
+  color:var(--cream);line-height:1.05;margin-bottom:5px}
 .stat span{font-family:var(--util);font-size:9.5px;font-weight:400;letter-spacing:1.9px;
   text-transform:uppercase;color:rgba(245,240,230,.72)}
 
