@@ -298,11 +298,14 @@ h1{font-family:var(--serif);font-size:clamp(30px,8vw,38px);line-height:1;
    text-size setting without wrapping, since a wrapped eyebrow is the
    very first thing anyone sees. Slightly tighter than the sitewide
    eyebrow tracking used everywhere else. */
-.eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:14px}
+.eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:14px;
+  text-shadow:0 1px 12px rgba(38,12,25,.7)}
+.eyebrow-hero::before{filter:drop-shadow(0 1px 6px rgba(38,12,25,.7))}
 .hero-tagline{font-family:var(--util);font-style:normal;font-weight:400;
   letter-spacing:.6px;font-size:clamp(12.5px,3vw,14px);color:var(--cream-dk);margin-bottom:16px;
   text-shadow:0 1px 12px rgba(38,12,25,.65)}
 .hero-sub{color:rgba(250,247,240,.92);font-size:14.5px;margin-bottom:18px}
+.hero-sub-framed strong{color:var(--gold);font-weight:700}
 /* Bordered frame around the one fact that matters most - plot count
    and price - so it reads as a distinct card, the way a premium
    reference site frames the same information, rather than blending
@@ -705,7 +708,7 @@ body.locked{overflow:hidden}
            reference sites: a thin outline, no fill, generous padding,
            so it reads as a distinct card rather than another line of
            body copy stacked in with everything else. -->
-      <p class="hero-sub hero-sub-framed">210 Exclusive Plots &middot; From &#8377;72 Lakhs</p>
+      <p class="hero-sub hero-sub-framed"><strong>210</strong> Exclusive Plots &middot; From <strong>&#8377;72 Lakhs</strong></p>
       <!-- No buttons at all in the hero content on phones - the sticky
            bottom bar already puts Call and Get Priority Pricing
            permanently on screen, so a button here would just repeat
