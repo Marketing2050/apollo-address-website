@@ -306,6 +306,13 @@ h1{font-family:var(--serif);font-size:clamp(30px,8vw,38px);line-height:1;
 .eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:14px;
   text-shadow:0 1px 12px rgba(38,12,25,.7)}
 .eyebrow-hero::before{filter:drop-shadow(0 1px 6px rgba(38,12,25,.7))}
+/* The badge replaces the marker as this line's flag - a maroon dot
+   and a solid gold pill in the same breath would be two competing
+   accents, so the pill alone does the highlighting here. */
+.eyebrow-badge::before{display:none}
+.badge-pill{display:inline-block;background:var(--gold);color:var(--plum-deep);
+  padding:4px 10px;border-radius:3px;font-weight:700;letter-spacing:1.6px;
+  text-shadow:none;box-shadow:0 2px 10px rgba(38,12,25,.35)}
 .hero-tagline{font-family:var(--util);font-style:normal;font-weight:400;
   letter-spacing:.6px;font-size:clamp(12.5px,3vw,14px);color:var(--cream-dk);margin-bottom:16px;
   text-shadow:0 1px 12px rgba(38,12,25,.65)}
@@ -719,7 +726,7 @@ body.locked{overflow:hidden}
          so the statue and skyline stay unobstructed above it - the video
          is the hero, not a backdrop for a wall of text. -->
     <div class="hero-inner">
-      <span class="eyebrow eyebrow-hero">Pre-Launch &middot; Off Nelamangala Road</span>
+      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span>Off Nelamangala Road</span>
       <h1>Apollo Address</h1>
       <p class="hero-tagline">Greek-Themed Luxury Villa Plots by Address Maker</p>
       <!-- A bordered frame around the key fact - plot count and price -
