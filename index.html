@@ -177,6 +177,31 @@ p{color:var(--muted)}
   pointer-events:none;background-image:url("assets/sunburst-motif.webp");
   background-repeat:no-repeat;background-size:contain;opacity:.10}
 
+/* ---------- APOLLO EXPERIENCE (project films) ----------
+   Thumbnail + play button only - the actual YouTube player (and all
+   of its own JS/cookies) loads only once a visitor clicks, so this
+   costs nothing on page load for anyone who never presses play. */
+.experience-grid{display:grid;gap:16px;margin-top:24px}
+.video-card{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:16/9;
+  background:var(--plum-deep);cursor:pointer}
+.video-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.video-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-card::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(38,12,25,0) 40%,rgba(38,12,25,.55) 100%);
+  pointer-events:none}
+.video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:60px;height:60px;border-radius:50%;background:rgba(245,240,230,.92);
+  display:flex;align-items:center;justify-content:center;z-index:1;
+  box-shadow:0 4px 20px rgba(38,12,25,.4);transition:background .2s,transform .2s}
+.video-card:hover .video-play{background:var(--cream);transform:translate(-50%,-50%) scale(1.06)}
+.video-play svg{width:20px;height:20px;color:var(--plum);margin-left:3px}
+.video-label{position:absolute;left:16px;bottom:14px;z-index:1;color:var(--cream);
+  font-family:var(--util);font-size:11px;letter-spacing:1.4px;text-transform:uppercase}
+.video-card.playing .video-play,.video-card.playing .video-label,
+.video-card.playing::after{display:none}
+.disclaimer-note{font-size:11px;color:var(--muted);margin-top:14px;letter-spacing:.2px}
+@media (min-width:768px){.experience-grid{grid-template-columns:1fr 1fr}}
+
 /* ---------- AWARDS & RECOGNITIONS ----------
    The lotus/fan tessellation is a second pattern, distinct from the
    Greek-key motif used everywhere else - reserved for this one section,
@@ -965,6 +990,26 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
+<section class="section defer" id="experience">
+  <div class="wrap">
+    <span class="eyebrow">The Apollo Experience</span>
+    <h2>See It Before You Visit.</h2>
+    <div class="experience-grid">
+      <div class="video-card" data-yt="FSALxbhTUqM" role="button" tabindex="0" aria-label="Play film: Discover Apollo Address">
+        <img src="assets/apollo-arrival-960.webp" srcset="assets/apollo-arrival-640.webp 640w, assets/apollo-arrival-960.webp 960w, assets/apollo-arrival-1440.webp 1440w" sizes="(min-width:768px) 50vw, 100vw" width="1440" height="810" alt="Discover Apollo Address - project film thumbnail" loading="lazy" decoding="async">
+        <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        <span class="video-label">Discover Apollo Address</span>
+      </div>
+      <div class="video-card" data-yt="tyYUIX-vyNY" role="button" tabindex="0" aria-label="Play film: Explore the Location">
+        <img src="assets/gazebo-dusk-960.webp" srcset="assets/gazebo-dusk-640.webp 640w, assets/gazebo-dusk-960.webp 960w, assets/gazebo-dusk-1440.webp 1440w" sizes="(min-width:768px) 50vw, 100vw" width="1440" height="810" alt="Explore the Location - project film thumbnail" loading="lazy" decoding="async">
+        <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        <span class="video-label">Explore the Location</span>
+      </div>
+    </div>
+    <p class="disclaimer-note">Project films supplied by Address Maker. Visuals are indicative &mdash; verify current details with the sales team.</p>
+  </div>
+</section>
+
 <section class="section defer" id="gallery">
   <div class="wrap">
     <span class="eyebrow">Gallery</span>
@@ -1141,6 +1186,7 @@ body.locked{overflow:hidden}
     </div>
 
     <div class="legal">
+      <p><strong>Apollo Address &mdash; Official Project Microsite</strong></p>
       <p>&copy; 2026 Address Maker | RERA No. PRM/KA/RERA/1250/307/PR/180826/008874 |
         <a href="https://addressmaker.in/privacy-policy" target="_blank" rel="noopener">Privacy Policy &#8599;</a> |
         <a href="https://addressmaker.in/disclaimer" target="_blank" rel="noopener">Disclaimer &amp; Legal Information &#8599;</a></p>
@@ -1578,6 +1624,31 @@ body.locked{overflow:hidden}
         g.hidden = !(c === "all" || g.getAttribute("data-cat") === c);
       });
       dataLayer.push({ event: "apollo_gallery_filter", filter: c, project: PROJECT });
+    });
+  });
+
+  /* ==========================================================
+     4b. APOLLO EXPERIENCE - click-to-play video facade
+     No iframe, no YouTube JS, no cookies until this fires - the
+     thumbnail above is the entire cost paid by anyone who scrolls
+     past without clicking.
+     ========================================================== */
+  $$(".video-card").forEach(function (card) {
+    function play() {
+      if (card.classList.contains("playing")) return;
+      var id = card.getAttribute("data-yt");
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
+      iframe.title = card.getAttribute("aria-label") || "Apollo Address film";
+      iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      card.appendChild(iframe);
+      card.classList.add("playing");
+      dataLayer.push({ event: "apollo_video_play", video_id: id, project: PROJECT });
+    }
+    card.addEventListener("click", play);
+    card.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); play(); }
     });
   });
 
