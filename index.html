@@ -379,7 +379,8 @@ h1{font-family:var(--serif);font-size:clamp(30px,8vw,38px);line-height:1;
 @keyframes scroll-cue{0%,100%{transform:translateY(0);opacity:.65}50%{transform:translateY(5px);opacity:1}}
 @media (prefers-reduced-motion:reduce){.hero-scroll svg{animation:none}}
 
-.hero-trust{margin-top:14px;font-family:var(--util);font-size:9.5px;font-weight:400;letter-spacing:2px;
+.hero-trust{margin-top:14px;max-width:calc(100% - 78px);font-family:var(--util);font-size:9.5px;
+  font-weight:400;letter-spacing:2px;line-height:1.6;
   text-transform:uppercase;color:rgba(250,247,240,.6)}
 
 /* ---------- USP TICKER ---------- */
@@ -798,7 +799,7 @@ body.locked{overflow:hidden}
         <button type="button" class="btn btn-gold" data-cta="hero">Get Priority Pricing</button>
         <a href="#project" class="btn btn-light" data-cta="hero-explore">See the Project</a>
       </div>
-      <p class="hero-trust">K-RERA Registered</p>
+      <p class="hero-trust">K-RERA Registered &middot; Official Project Microsite</p>
     </div>
     <!-- Scroll cue sits in its own corner, not stacked into the copy
          column - one more line in that left-aligned block was starting
