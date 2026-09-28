@@ -229,6 +229,36 @@ p{color:var(--muted)}
    would be clipped by the parent's own edge. */
 .framed.inset::before{inset:14px}
 
+/* ---------- REFERENCE PHOTOGRAPHY BACKGROUNDS ----------
+   The rendered marble/plaster wall art supplied as the actual theme
+   reference - used here as literal section photography rather than
+   redrawn as flat colour + line-art, so the embossed Greek-key border,
+   the carved sunburst and the real stone depth come through as-is.
+   Mobile gets a smaller crop of the same file; both sit behind a
+   colour-matched overlay so the existing text keeps its contrast. */
+.bg-photo{position:relative;overflow:hidden}
+.bg-photo::before{content:"";position:absolute;inset:0;z-index:0;
+  background-repeat:no-repeat;background-position:center;background-size:cover}
+.bg-photo>.wrap,.bg-photo>*{position:relative;z-index:1}
+
+.usp-strip.bg-photo::before{background-image:url("assets/bg-frame-cream-clean-900.jpg")}
+.stats.bg-photo::before{background-image:url("assets/bg-frame-plum-column-900.jpg")}
+.mp-bg.bg-photo::before{background-image:url("assets/bg-frame-cream-vase-900.jpg")}
+#enquire.bg-photo::before{background-image:url("assets/bg-frame-plum-column-900.jpg")}
+
+/* Dark overlays only where the photo sits under light-on-dark type -
+   the cream photo sections already have dark-on-light copy, which
+   needs no extra darkening. */
+.stats.bg-photo::after,#enquire.bg-photo::after{content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,rgba(38,12,25,.72) 0%,rgba(38,12,25,.42) 55%,rgba(38,12,25,.6) 100%)}
+
+@media (min-width:768px){
+  .usp-strip.bg-photo::before{background-image:url("assets/bg-frame-cream-clean-1800.jpg")}
+  .stats.bg-photo::before{background-image:url("assets/bg-frame-plum-column-1800.jpg")}
+  .mp-bg.bg-photo::before{background-image:url("assets/bg-frame-cream-vase-1800.jpg")}
+  #enquire.bg-photo::before{background-image:url("assets/bg-frame-plum-column-1800.jpg")}
+}
+
 /* ---------- SECTION DIVIDER, revised ----------
    The original was a single small 60x26 icon between two hairlines -
    correct in spirit but too faint to register as the deck's meander
@@ -882,8 +912,7 @@ body.locked{overflow:hidden}
   </div>
 </div>
 
-<section class="stats">
-  <div class="sunburst-wash" aria-hidden="true" style="opacity:.16"></div>
+<section class="stats bg-photo">
   <div class="wrap stats-grid">
     <div class="stat"><b data-count="362">362</b><span>Exclusive Plots</span></div>
     <div class="stat"><b>&#8377;58L*</b><span>Starting Price</span></div>
@@ -892,8 +921,7 @@ body.locked{overflow:hidden}
   </div>
 </section>
 
-<section class="section defer usp-strip">
-  <div class="sunburst-wash" aria-hidden="true"></div>
+<section class="section defer usp-strip bg-photo">
   <div class="wrap center">
     <span class="eyebrow center">The Apollo Advantage</span>
     <h2>Why Choose Apollo Address.</h2>
@@ -1002,7 +1030,7 @@ body.locked{overflow:hidden}
 <!-- GATED MASTER PLAN
      Highest-intent capture on the page: someone asking for the plan
      is past browsing. The lead is tagged form_location=masterplan. -->
-<section class="section defer">
+<section class="section defer mp-bg bg-photo">
   <div class="wrap gate-wrap">
     <div class="gate">
       <div class="media r-4-3" style="background-image:url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABkRExYTEBkWFBYcGxkeJT4pJSIiJUw3Oi0+WlBfXllQV1ZkcJB6ZGqIbFZXfap+iJSZoaKhYXiwva+cu5CeoZr/2wBDARscHCUhJUkpKUmaZ1dnmpqampqampqampqampqampqampqampqampqampqampqampqampqampqampqampqampr/wAARCAALABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCFHuMuZLhmwOPaiJpncZnZ/l6e9WGiQNkKMnrVuPEceUAB9cVnKRaiU1a7QEF3zn1oqck5oqrsXKj/2Q==)"><img src="assets/roundabout-960.webp" srcset="assets/roundabout-640.webp 640w, assets/roundabout-960.webp 960w, assets/roundabout-1440.webp 1440w, assets/roundabout-1920.webp 1920w" sizes="(min-width:768px) 40vw, 100vw" width="1440" height="810" alt="Master plan preview" loading="lazy" decoding="async"></div>
@@ -1280,7 +1308,7 @@ body.locked{overflow:hidden}
      A real form in the page, not only a popup: it is indexable,
      works if the popup script fails, and catches people who scroll
      to the end rather than tapping a CTA. -->
-<section class="section dark defer" id="enquire">
+<section class="section dark defer bg-photo" id="enquire">
   <div class="corner-burst left" aria-hidden="true"></div>
   <div class="corner-burst right" aria-hidden="true"></div>
   <div class="emblem-wash" aria-hidden="true"></div>
