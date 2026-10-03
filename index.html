@@ -25,11 +25,11 @@
 
 <link rel="preload" as="image" fetchpriority="high" media="(max-width:767px)"
   href="assets/hero-poster-portrait-720.webp"
-  imagesrcset="assets/hero-poster-portrait-480.webp 480w, assets/hero-poster-portrait-720.webp 720w"
+  imagesrcset="assets/hero-poster-portrait-480.webp 480w, assets/hero-poster-portrait-720.webp 720w, assets/hero-poster-portrait-960.webp 960w"
   imagesizes="100vw">
 <link rel="preload" as="image" fetchpriority="high" media="(min-width:768px)"
   href="assets/hero-poster-1280.webp"
-  imagesrcset="assets/hero-poster-640.webp 640w, assets/hero-poster-960.webp 960w, assets/hero-poster-1280.webp 1280w, assets/hero-poster-1600.webp 1600w"
+  imagesrcset="assets/hero-poster-640.webp 640w, assets/hero-poster-960.webp 960w, assets/hero-poster-1280.webp 1280w, assets/hero-poster-1600.webp 1600w, assets/hero-poster-1920.webp 1920w"
   imagesizes="100vw">
 
 <!--
@@ -361,7 +361,13 @@ p{color:var(--muted)}
 .btn-gold:hover{background:#fff;border-color:#fff;color:var(--plum)}
 .btn-ghost{background:transparent;color:var(--plum);border-color:var(--line)}
 .btn-ghost:hover{background:rgba(59,19,38,.06);color:var(--plum);border-color:var(--plum)}
-.btn-light{background:transparent;color:var(--cream);border-color:rgba(245,240,230,.5)}
+/* A transparent button sat fine over the old hero's single darkened
+   text panel, but now it's the only thing drawn over a full-bright,
+   detailed photo with no scrim behind it specifically - a light
+   backdrop blur keeps "See the Project" readable wherever the photo
+   underneath happens to be busy, without needing a solid fill. */
+.btn-light{background:rgba(38,12,25,.4);backdrop-filter:blur(2px) saturate(120%);
+  -webkit-backdrop-filter:blur(2px) saturate(120%);color:var(--cream);border-color:rgba(245,240,230,.5)}
 .btn-light:hover{background:var(--cream);color:var(--plum);border-color:var(--cream)}
 
 /* ---------- MEDIA ---------- */
@@ -417,10 +423,18 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
 .hero-bg{position:absolute;inset:0;z-index:-2;background:var(--plum-deep);overflow:hidden}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center 38%}
+/* Lightened from the earlier heavy bottom scrim - that darkening was
+   there to keep a stacked text block legible. The hero copy is now a
+   visually-hidden h1 plus two opaque buttons (self-contained contrast,
+   no scrim needed), so the poster photo itself - the actual content
+   here now - should read at its own true golden-hour tone rather than
+   being dimmed for text that's no longer drawn over it. Just a soft
+   bottom fade remains, to ground the image into the section below. */
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(38,12,25,.06) 0%,rgba(38,12,25,.10) 18%,
-    rgba(38,12,25,.22) 36%,rgba(38,12,25,.42) 52%,rgba(38,12,25,.64) 66%,
-    rgba(38,12,25,.84) 80%,rgba(38,12,25,.97) 100%)}
+  background:linear-gradient(180deg,rgba(38,12,25,0) 0%,rgba(38,12,25,0) 68%,
+    rgba(38,12,25,.3) 88%,rgba(38,12,25,.5) 100%)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* The page-wide scrim gradient alone isn't reliable: on a short/wide
    browser window the text block can land higher up the frame where the
@@ -431,46 +445,92 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
    since it darkens whatever is actually behind the words rather than
    relying on the text's absolute position down the page. */
 .hero-inner{max-width:420px}
-h1{font-family:var(--serif);font-size:clamp(30px,8vw,38px);line-height:1;
-  color:var(--cream);margin-bottom:8px;text-shadow:0 2px 20px rgba(38,12,25,.5)}
+h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
+  color:var(--cream);margin-bottom:6px;text-shadow:0 2px 24px rgba(38,12,25,.55)}
 /* Extra tracking safety margin on the hero eyebrow specifically - this
    is the one line that has to survive every device's default zoom and
    text-size setting without wrapping, since a wrapped eyebrow is the
    very first thing anyone sees. Slightly tighter than the sitewide
    eyebrow tracking used everywhere else. */
-.eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:14px;
+.eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:0;
   text-shadow:0 1px 12px rgba(38,12,25,.7)}
 .eyebrow-hero::before{filter:drop-shadow(0 1px 6px rgba(38,12,25,.7))}
 /* The badge replaces the marker as this line's flag - a maroon dot
    and a solid gold pill in the same breath would be two competing
    accents, so the pill alone does the highlighting here. */
 .eyebrow-badge::before{display:none}
-.badge-pill{display:inline-block;background:var(--gold);color:var(--plum-deep);
+/* Short kicker rule under the location line - the AI concept board's
+   own device for that line, used here in place of the small square
+   marker (already hidden by eyebrow-badge above) since a pill and a
+   marker in the same breath was one accent too many. */
+/* Divider-with-dot kicker, in the style of the Devanahalli poster
+   reference the user asked this hero to follow: a short line, a
+   center dot, a short line - rather than one plain rule. The dot is
+   a real child element (.hero-rule-dot) sat between the ::before and
+   ::after line segments so it lands visually centered between them. */
+.hero-rule{display:flex;align-items:center;gap:7px;width:84px;margin:6px 0 14px}
+.hero-rule::before,.hero-rule::after{content:"";flex:1;height:1px;background:var(--gold)}
+.hero-rule-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex:none}
+.badge-pill{display:inline-block;flex:none;white-space:nowrap;background:var(--gold);color:var(--plum-deep);
   padding:4px 10px;border-radius:3px;font-weight:700;letter-spacing:1.6px;
   text-shadow:none;box-shadow:0 2px 10px rgba(38,12,25,.35)}
+/* Two-tone headline line - the project's own tagline ("A Timeless
+   Lifestyle Begins Here") in the exact gold-serif / cream-serif split
+   used on the official Apollo Address poster the user shared, sat
+   directly under the "Apollo Address" h1 which does the job the
+   poster's crest+wordmark logo does here. */
+.hero-headline{font-family:var(--serif);line-height:1.08;margin:0 0 12px}
+.hero-headline .hl-1{display:block;color:var(--gold);font-weight:400;
+  font-size:clamp(22px,6vw,30px);text-shadow:0 2px 16px rgba(38,12,25,.55)}
+.hero-headline .hl-2{display:block;color:var(--cream);font-weight:700;
+  font-size:clamp(16px,4.2vw,21px);letter-spacing:.3px;margin-top:1px;
+  text-shadow:0 2px 16px rgba(38,12,25,.55)}
 .hero-tagline{font-family:var(--util);font-style:normal;font-weight:400;
-  letter-spacing:.6px;font-size:clamp(12.5px,3vw,14px);color:var(--cream-dk);margin-bottom:16px;
-  text-shadow:0 1px 12px rgba(38,12,25,.65)}
+  letter-spacing:2px;text-transform:uppercase;font-size:clamp(10.5px,2.6vw,12px);
+  color:var(--cream-dk);margin-bottom:14px;text-shadow:0 1px 12px rgba(38,12,25,.65)}
 .hero-sub{color:rgba(250,247,240,.92);font-size:14.5px;margin-bottom:18px}
-.hero-sub-framed strong{color:var(--gold);font-weight:700}
-/* Bordered frame around the one fact that matters most - plot count
-   and price - so it reads as a distinct card, the way a premium
-   reference site frames the same information, rather than blending
-   into the rest of the stacked copy. */
-.hero-sub-framed{display:inline-block;position:relative;border:1px solid rgba(245,240,230,.4);
-  background:rgba(38,12,25,.5);backdrop-filter:blur(3px) saturate(120%);-webkit-backdrop-filter:blur(3px) saturate(120%);
-  padding:14px 18px;margin-bottom:20px;font-size:14px;letter-spacing:.2px}
-.hero-sub-framed::after{content:"";position:absolute;top:-14px;right:-10px;width:34px;height:60px;
-  pointer-events:none;background-image:url("assets/vine-motif.webp");background-repeat:no-repeat;
-  background-size:contain;background-position:top right;opacity:.55;transform:rotate(8deg)}
+/* Single starting-price ribbon - the official poster's own device for
+   this figure: a thin gold-bordered box, a small "Starting" label and
+   the figure itself large, in place of the earlier two-segment bar.
+   Plot count (362) isn't dropped from the hero - it's still the very
+   first thing in the ticker strip directly below the fold and in the
+   stats row after it - this box now matches the poster's single-figure
+   framing exactly rather than carrying two facts at once. */
+.hero-price{display:inline-block;position:relative;border:1px solid rgba(214,180,133,.55);
+  background:rgba(38,12,25,.58);backdrop-filter:blur(3px) saturate(120%);
+  -webkit-backdrop-filter:blur(3px) saturate(120%);padding:11px 20px;margin-bottom:20px;
+  box-shadow:0 10px 26px rgba(20,6,14,.35)}
+.hero-price-label{display:block;font-family:var(--util);font-size:9.5px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.hero-price-value{display:block;font-family:var(--serif);font-size:clamp(24px,6.5vw,32px);
+  font-weight:700;color:var(--cream);line-height:1}
+.hero-price-value sup{font-size:.5em;font-weight:400;vertical-align:text-top}
+/* Compact amenity/location/RERA fact strip - icon + short label,
+   repeated, separated by a thin vertical rule - the poster reference's
+   bottom icon row, in place of the single trust line, built only from
+   facts already verified elsewhere on this page (ticker, location
+   table, footer RERA number). */
+.hero-facts{display:flex;align-items:center;flex-wrap:wrap;row-gap:8px;column-gap:10px;
+  margin-top:14px;max-width:calc(100% - 20px)}
+.hero-fact{display:inline-flex;align-items:center;gap:5px;font-family:var(--util);
+  font-size:9px;font-weight:400;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(250,247,240,.8);text-shadow:0 1px 8px rgba(38,12,25,.7);white-space:nowrap}
+.hero-fact svg{width:14px;height:14px;flex:none;color:var(--gold)}
+.hero-fact-div{width:1px;height:12px;background:rgba(250,247,240,.35);flex:none}
 .hero-actions{display:none;gap:9px;max-width:420px}
 /* No buttons in the hero content on phones - see the HTML comment above
    this block. Both buttons return together at tablet width. */
 /* Pinned to the hero's own bottom-right corner, not stacked into the
    left copy column - keeps the text block short and uncrowded. Hidden
    again at tablet width, where there is more room and less need for it. */
-.hero-scroll{position:absolute;right:20px;bottom:20px;z-index:2;
-  display:flex;flex-direction:column;align-items:center;gap:5px;
+/* Hidden by default now - the hero-facts strip added above occupies
+   the lower-right space this cue used to sit in on phones, and
+   re-showing it there collided with that strip's second line. It was
+   already hidden again at tablet width (below), so this just moves
+   that same "not on phones either" decision up a breakpoint rather
+   than deleting a working, previously-tested element. */
+.hero-scroll{display:none;position:absolute;right:20px;bottom:20px;z-index:2;
+  flex-direction:column;align-items:center;gap:5px;
   font-family:var(--util);font-size:9px;font-weight:400;letter-spacing:3px;
   text-transform:uppercase;color:rgba(250,247,240,.65)}
 .hero-scroll svg{width:14px;height:14px;animation:scroll-cue 1.6s ease-in-out infinite}
@@ -785,7 +845,13 @@ body.locked{overflow:hidden}
   h1{font-size:clamp(42px,5.2vw,56px)} h2{font-size:clamp(34px,4vw,42px)}
   .hm-emblem{height:46px}
   .hm-word{height:25px}
-  .hero{align-items:center;padding:140px 0 88px}
+  /* Was align-items:center - that suited the earlier tall stacked-text
+     hero, keeping it visually balanced mid-photo. Now the hero holds
+     just two buttons (the poster photo carries all the copy), so
+     centering them put the CTA row awkwardly mid-image, overlapping
+     the golfer. Bottom-pinned (matching the mobile layout) reads as a
+     normal photo-hero CTA placement instead. */
+  .hero{align-items:flex-end;padding:140px 0 64px}
   .hero-inner{max-width:620px}
   .hero-sub{font-size:16px;max-width:44ch}
   .hero-actions{display:grid;grid-template-columns:auto auto;justify-content:start}
@@ -870,43 +936,37 @@ body.locked{overflow:hidden}
 </header>
 
 <!-- HERO
-     The entrance portal carries the project name in-frame, so it
-     anchors the fold. Mobile pulls a tighter, closer-in crop so the
-     statue reads at full presence with minimal empty sky above it;
-     desktop keeps the wider 16:9. -->
+     Uses the official Apollo Address poster photography exactly as
+     supplied - the golfer on the putting green at the Parthenon
+     gazebo, golden hour - full-bleed, with no HTML text drawn over it
+     (see the comment below). Mobile gets the portrait crop, matching
+     the poster's own portrait framing; desktop gets a wider 16:9 crop
+     of the same scene. -->
 <section class="hero" id="top">
   <div class="hero-bg">
     <picture><source media="(max-width:767px)" type="image/webp"
-      srcset="assets/hero-poster-portrait-480.webp 480w, assets/hero-poster-portrait-720.webp 720w" sizes="100vw">
+      srcset="assets/hero-poster-portrait-480.webp 480w, assets/hero-poster-portrait-720.webp 720w, assets/hero-poster-portrait-960.webp 960w" sizes="100vw">
     <source type="image/webp"
-      srcset="assets/hero-poster-640.webp 640w, assets/hero-poster-960.webp 960w, assets/hero-poster-1280.webp 1280w, assets/hero-poster-1600.webp 1600w" sizes="100vw">
+      srcset="assets/hero-poster-640.webp 640w, assets/hero-poster-960.webp 960w, assets/hero-poster-1280.webp 1280w, assets/hero-poster-1600.webp 1600w, assets/hero-poster-1920.webp 1920w" sizes="100vw">
     <img src="assets/hero-poster-1280.jpg" width="1280" height="720"
-      alt="Marble statue of Apollo on the colonnaded entrance avenue, flanked by cypress trees" fetchpriority="high" decoding="async"></picture>
+      alt="Golden-hour view of the Parthenon-style clubhouse gazebo and putting green beside the landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async"></picture>
   </div>
   <div class="wrap">
-    <!-- Copy sits in a single compact panel pinned to the bottom third,
-         so the statue and skyline stay unobstructed above it - the video
-         is the hero, not a backdrop for a wall of text. -->
+    <!-- The poster image now carries the project name, tagline, price
+         and amenities in-frame on its own - the HTML copy block that
+         used to repeat all of that over the photo has been removed so
+         it isn't shown twice. "Apollo Address" stays as a visually-
+         hidden h1 (sr-only) purely for SEO and screen readers - the
+         page still needs exactly one real h1 even though it's not
+         drawn on screen - and the two CTA buttons remain, since the
+         poster is a static ad creative with no working buttons of its
+         own and this is still a landing page people need to act from. -->
     <div class="hero-inner">
-      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span>Off Nelamangala Road</span>
-      <h1>Apollo Address</h1>
-      <p class="hero-tagline">Greek-Themed Luxury Villa Plots by Address Maker</p>
-      <!-- A bordered frame around the key fact - plot count and price -
-           the same device used for this exact information on premium
-           reference sites: a thin outline, no fill, generous padding,
-           so it reads as a distinct card rather than another line of
-           body copy stacked in with everything else. -->
-      <p class="hero-sub hero-sub-framed framed on-dark"><strong>362</strong> Exclusive Plots &middot; From <strong>&#8377;58 Lakhs*</strong></p>
-      <!-- No buttons at all in the hero content on phones - the sticky
-           bottom bar already puts Call and Get Priority Pricing
-           permanently on screen, so a button here would just repeat
-           whichever one and clutter the very first view. Both buttons
-           come back at tablet width, where there is no sticky bar. -->
+      <h1 class="sr-only">Apollo Address &ndash; Greek-Themed Luxury Villa Plots Off Nelamangala Road, Bengaluru</h1>
       <div class="hero-actions">
         <button type="button" class="btn btn-gold" data-cta="hero">Get Priority Pricing</button>
         <a href="#project" class="btn btn-light" data-cta="hero-explore">See the Project</a>
       </div>
-      <p class="hero-trust">K-RERA Registered &middot; Official Project Microsite</p>
     </div>
     <!-- Scroll cue sits in its own corner, not stacked into the copy
          column - one more line in that left-aligned block was starting
