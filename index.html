@@ -412,36 +412,39 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
   background:var(--cream);border-color:var(--cream);color:var(--plum)}
 
 /* ---------- HERO ----------
-   Restructured into the reference poster's own three zones, not a
-   full-bleed photo with text floated on top of it: a solid-colour
-   text band (badge, name, tagline) above the photo, the photo itself
-   shown in full with nothing drawn over it, then a second solid band
-   below (sizes/price, CTAs, amenity facts). Matching var(--plum) to
-   the header's own scrolled-solid colour means the fixed header reads
-   as part of the same band rather than a seam; var(--plum-deep) on
-   the bottom band is the same colour as the ticker strip directly
-   below the fold, so the two run together as one dark zone. Nothing
-   here needs a text-shadow or scrim any more - every line sits on a
-   flat colour, not photo detail. */
-.hero{position:relative;color:var(--cream)}
-.hero-top{background:var(--plum);padding:92px 0 26px}
-.hero-bottom{background:var(--plum-deep);padding:24px 0 34px}
-.hero-photo{position:relative;width:100%;aspect-ratio:502/610;
-  overflow:hidden;background:var(--plum-deep)}
+   Full-bleed photo with the copy layered directly on it, after the
+   client's own official poster: one continuous image, a centred
+   title block riding the open sky near the top, a second centred
+   block (location, sizes/price, CTAs, facts) anchored to the bottom
+   edge - not two solid-colour bands with the photo sandwiched between
+   them. A top-to-bottom gradient keeps both text zones readable
+   while leaving the middle of the photo (the golfer, the gazebo)
+   clear, the same way the poster darkens only its sky and its base
+   strip and leaves the green in between untouched. */
+.hero{position:relative;min-height:92svh;color:var(--cream);isolation:isolate;overflow:hidden}
+.hero-photo{position:absolute;inset:0;z-index:-2;background:var(--plum-deep)}
 .hero-photo picture{display:block;width:100%;height:100%}
-.hero-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.hero-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(28,9,19,.74) 0%,rgba(28,9,19,.3) 20%,
+    rgba(28,9,19,.06) 36%,rgba(28,9,19,.1) 62%,rgba(28,9,19,.82) 100%)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-.hero-inner{max-width:420px}
+.hero-content{position:relative;z-index:1;min-height:92svh;display:flex;
+  flex-direction:column;justify-content:space-between;padding:96px 0 28px;
+  text-align:center}
+.hero-top-block,.hero-bottom-block{max-width:440px;margin:0 auto}
+.hero-inner{max-width:420px;margin:0 auto}
 h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
-  color:var(--cream);margin-bottom:9px}
+  color:var(--cream);margin-bottom:9px;text-shadow:0 2px 18px rgba(20,6,14,.55)}
 /* Extra tracking safety margin on the hero eyebrow specifically - this
    is the one line that has to survive every device's default zoom and
    text-size setting without wrapping, since a wrapped eyebrow is the
    very first thing anyone sees. Slightly tighter than the sitewide
    eyebrow tracking used everywhere else. */
-.eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:0}
+.eyebrow-hero{letter-spacing:2px;font-size:10px;margin-bottom:0;justify-content:center;
+  text-shadow:0 1px 10px rgba(20,6,14,.6)}
 /* The badge replaces the marker as this line's flag - a maroon dot
    and a solid gold pill in the same breath would be two competing
    accents, so the pill alone does the highlighting here. */
@@ -455,7 +458,7 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
    center dot, a short line - rather than one plain rule. The dot is
    a real child element (.hero-rule-dot) sat between the ::before and
    ::after line segments so it lands visually centered between them. */
-.hero-rule{display:flex;align-items:center;gap:7px;width:84px;margin:6px 0 14px}
+.hero-rule{display:flex;align-items:center;gap:7px;width:84px;margin:6px auto 14px}
 .hero-rule::before,.hero-rule::after{content:"";flex:1;height:1px;background:var(--gold)}
 .hero-rule-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex:none}
 .badge-pill{display:inline-block;flex:none;white-space:nowrap;background:var(--gold);color:var(--plum-deep);
@@ -469,7 +472,7 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
    the h1. */
 .hero-tagline{font-family:var(--util);font-style:normal;font-weight:400;
   letter-spacing:2px;text-transform:uppercase;font-size:clamp(10.5px,2.6vw,12px);
-  color:var(--cream-dk);margin-bottom:0}
+  color:var(--cream-dk);margin-bottom:0;text-shadow:0 1px 10px rgba(20,6,14,.6)}
 .hero-sub{color:rgba(250,247,240,.92);font-size:14.5px;margin-bottom:18px}
 /* Two-cell fact bar - plot size range in an outlined cell, starting
    price in a solid gold cell, joined edge-to-edge - the same structural
@@ -477,10 +480,12 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
    built from Apollo Address's own real, verified figures (four plot
    configurations from 1,200 to 1,800 sq. ft., matching the Plots
    section below; starting price, matching the stats section). */
-.hero-bar{display:flex;width:max-content;max-width:100%;position:relative;margin:20px 0 20px}
+.hero-bar{display:flex;width:max-content;max-width:100%;position:relative;margin:20px auto 20px;
+  box-shadow:0 10px 26px rgba(20,6,14,.4)}
 .hero-bar-sizes{display:flex;flex-direction:column;justify-content:center;
   border:1px solid rgba(245,240,230,.4);border-right:none;
-  background:rgba(245,240,230,.06);padding:9px 14px}
+  background:rgba(38,12,25,.55);backdrop-filter:blur(3px) saturate(120%);
+  -webkit-backdrop-filter:blur(3px) saturate(120%);padding:9px 14px}
 .hero-bar-sizes-label{display:block;font-family:var(--util);font-size:8.5px;letter-spacing:2px;
   text-transform:uppercase;color:rgba(250,247,240,.7);margin-bottom:2px}
 .hero-bar-sizes-value{display:block;font-family:var(--serif);font-size:15px;
@@ -498,16 +503,16 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
    so if the row wraps, the divider travels with the item it belongs
    to onto the new line instead of being stranded at the old line's
    end. */
-.hero-facts{display:flex;align-items:center;flex-wrap:wrap;row-gap:8px;column-gap:16px;
-  margin-top:16px;max-width:calc(100% - 20px)}
+.hero-facts{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+  row-gap:8px;column-gap:16px;margin:16px auto 0;max-width:100%}
 .hero-fact{display:inline-flex;align-items:center;gap:6px;font-family:var(--util);
   font-size:9.5px;font-weight:400;letter-spacing:1px;text-transform:uppercase;
-  color:rgba(250,247,240,.8);white-space:nowrap}
+  color:rgba(250,247,240,.85);text-shadow:0 1px 8px rgba(20,6,14,.7);white-space:nowrap}
 .hero-fact svg{width:14px;height:14px;flex:none;color:var(--gold)}
 .hero-fact + .hero-fact{position:relative;padding-left:16px}
 .hero-fact + .hero-fact::before{content:"";position:absolute;left:0;top:50%;
   transform:translateY(-50%);width:1px;height:12px;background:rgba(250,247,240,.35)}
-.hero-actions{display:none;gap:9px;max-width:420px}
+.hero-actions{display:none;gap:9px;max-width:420px;margin:0 auto}
 /* No buttons in the hero content on phones - see the HTML comment above
    this block. Both buttons return together at tablet width. */
 
@@ -819,20 +824,11 @@ body.locked{overflow:hidden}
   h1{font-size:clamp(42px,5.2vw,56px)} h2{font-size:clamp(34px,4vw,42px)}
   .hm-emblem{height:46px}
   .hm-word{height:25px}
-  /* The hero is no longer a full-bleed photo with text floated on top -
-     it's three stacked zones (see the HERO comment at its rule block).
-     At tablet width the photo widens out to a 16:9 crop (matching the
-     landscape assets already generated) instead of the taller mobile
-     portrait crop, and the top/bottom text bands get extra vertical
-     room now that there's no fixed header to dodge inside the photo
-     itself - the header still floats over .hero-top, so that band's
-     top padding keeps clearing it. */
-  .hero-top{padding:150px 0 34px}
-  .hero-bottom{padding:30px 0 44px}
-  .hero-photo{aspect-ratio:16/9}
+  .hero-content{padding:140px 0 48px}
   .hero-inner{max-width:620px}
+  .hero-top-block,.hero-bottom-block{max-width:620px}
   .hero-sub{font-size:16px;max-width:44ch}
-  .hero-actions{display:grid;grid-template-columns:auto auto;justify-content:start}
+  .hero-actions{display:grid;grid-template-columns:auto auto;justify-content:center}
   .hero-actions .btn{width:auto;padding:0 34px;white-space:nowrap}
   .stats-grid{grid-template-columns:repeat(4,1fr)}
   .stat{border-bottom:0;padding:30px 20px}
@@ -877,6 +873,7 @@ body.locked{overflow:hidden}
   .section{padding:120px 0}
   h1{font-size:60px} h2{font-size:46px}
   .hero-inner{max-width:760px}
+  .hero-top-block,.hero-bottom-block{max-width:760px}
   .split{gap:76px}
   .signature{min-height:640px;padding:80px 0}
   .gate-wrap{gap:76px}
@@ -915,22 +912,13 @@ body.locked{overflow:hidden}
      sizes/price bar, the CTAs, then a bottom icon fact-strip - built
      mobile-first and carried up to desktop unchanged in structure. -->
 <section class="hero" id="top">
-  <!-- Three stacked zones, after the reference poster's own layout
-       logic: a solid-colour band for the name/tagline, the photo shown
-       in full with nothing drawn over it, then a second solid band for
-       sizes/price, CTAs and the amenity facts. No "offer" badge or
-       ribbon anywhere (the poster reference's 20:80 payment plan ribbon
-       has no Apollo Address equivalent - there's no current offer to
-       state), so the bar below carries only the two facts that are
-       real: plot sizes and starting price. -->
-  <div class="hero-top">
-    <div class="wrap hero-inner">
-      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span>Off Nelamangala Road, Bengaluru</span>
-      <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
-      <h1>Apollo Address</h1>
-      <p class="hero-tagline">Greek-Themed Luxury Villa Plots</p>
-    </div>
-  </div>
+  <!-- Full-bleed photo, copy centred and layered directly on it - the
+       client's own official poster's own composition: an open sky at
+       top carrying the name/tagline, the clubhouse-and-green scene
+       left untouched through the middle, a darkened base strip
+       carrying location/sizes/price/facts. No "offer" badge or ribbon
+       (the poster's 20:80 payment-plan strip has no Apollo Address
+       equivalent - there's no current offer to state). -->
   <div class="hero-photo">
     <picture><source media="(max-width:767px)" type="image/webp"
       srcset="assets/hero-poster-portrait-480.webp 480w, assets/hero-poster-portrait-720.webp 720w, assets/hero-poster-portrait-960.webp 960w" sizes="100vw">
@@ -939,8 +927,14 @@ body.locked{overflow:hidden}
     <img src="assets/hero-poster-1280.jpg" width="1280" height="720"
       alt="Golden-hour view of the Parthenon-style clubhouse gazebo and putting green beside the landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async"></picture>
   </div>
-  <div class="hero-bottom">
-    <div class="wrap hero-inner">
+  <div class="wrap hero-content">
+    <div class="hero-top-block">
+      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span>Off Nelamangala Road, Bengaluru</span>
+      <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
+      <h1>Apollo Address</h1>
+      <p class="hero-tagline">Greek-Themed Luxury Villa Plots</p>
+    </div>
+    <div class="hero-bottom-block">
       <!-- Two-cell bar - plot size range and starting price, both real
            and verified (Plots section: four configs, 1,200-1,800 sq.
            ft.; Stats section: from Rs 58 Lakhs). -->
@@ -957,10 +951,14 @@ body.locked{overflow:hidden}
            keeping it here too was adding a third line without adding
            new information. Dividers are now a ::before on each
            non-first .hero-fact (see CSS) rather than separate spans,
-           so a wrap never strands a lone divider at a line's end. -->
+           so a wrap never strands a lone divider at a line's end.
+           Swapped the generic "Highways & Metro" line for the two
+           roads actually named in the Location section below
+           (Tumakuru Road, NICE Road) - more specific, and verified on
+           the page rather than a paraphrase. -->
       <div class="hero-facts">
         <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21v-7h6v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Parthenon &ndash; The Club</span>
-        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21 6.5 3M16 21l1.5-18M10.5 21h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Near to Highways &amp; Metro</span>
+        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21 6.5 3M16 21l1.5-18M10.5 21h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Near Tumakuru Road &amp; NICE Road</span>
       </div>
     </div>
   </div>
