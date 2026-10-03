@@ -445,7 +445,7 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
    relying on the text's absolute position down the page. */
 .hero-inner{max-width:420px}
 h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
-  color:var(--cream);margin-bottom:6px;text-shadow:0 2px 24px rgba(38,12,25,.55)}
+  color:var(--cream);margin-bottom:9px;text-shadow:0 2px 24px rgba(38,12,25,.55)}
 /* Extra tracking safety margin on the hero eyebrow specifically - this
    is the one line that has to survive every device's default zoom and
    text-size setting without wrapping, since a wrapped eyebrow is the
@@ -473,20 +473,15 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
 .badge-pill{display:inline-block;flex:none;white-space:nowrap;background:var(--gold);color:var(--plum-deep);
   padding:4px 10px;border-radius:3px;font-weight:700;letter-spacing:1.6px;
   text-shadow:none;box-shadow:0 2px 10px rgba(38,12,25,.35)}
-/* Two-tone headline line - the project's own tagline ("A Timeless
-   Lifestyle Begins Here") in the exact gold-serif / cream-serif split
-   used on the official Apollo Address poster the user shared, sat
-   directly under the "Apollo Address" h1 which does the job the
-   poster's crest+wordmark logo does here. */
-.hero-headline{font-family:var(--serif);line-height:1.08;margin:0 0 12px}
-.hero-headline .hl-1{display:block;color:var(--gold);font-weight:400;
-  font-size:clamp(22px,6vw,30px);text-shadow:0 2px 16px rgba(38,12,25,.55)}
-.hero-headline .hl-2{display:block;color:var(--cream);font-weight:700;
-  font-size:clamp(16px,4.2vw,21px);letter-spacing:.3px;margin-top:1px;
-  text-shadow:0 2px 16px rgba(38,12,25,.55)}
+/* The two-tone "A Timeless / Lifestyle Begins Here" line that used to
+   sit here was cut as repetitive - it read as a second headline
+   competing with "Apollo Address" and the tagline directly below, and
+   made the block feel long on a phone with live ad traffic landing on
+   it. The tagline alone now carries that role, one line, right under
+   the h1. */
 .hero-tagline{font-family:var(--util);font-style:normal;font-weight:400;
   letter-spacing:2px;text-transform:uppercase;font-size:clamp(10.5px,2.6vw,12px);
-  color:var(--cream-dk);margin-bottom:14px;text-shadow:0 1px 12px rgba(38,12,25,.65)}
+  color:var(--cream-dk);margin-bottom:16px;text-shadow:0 1px 12px rgba(38,12,25,.65)}
 .hero-sub{color:rgba(250,247,240,.92);font-size:14.5px;margin-bottom:18px}
 /* Two-cell fact bar - plot size range in an outlined cell, starting
    price in a solid gold cell, joined edge-to-edge - the same structural
@@ -511,18 +506,21 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
 .hero-price-value{display:block;font-family:var(--serif);font-size:17px;
   font-weight:700;color:var(--plum-deep);line-height:1.15;white-space:nowrap}
 .hero-price-value sup{font-size:.6em;font-weight:400;vertical-align:text-top}
-/* Compact amenity/location/RERA fact strip - icon + short label,
-   repeated, separated by a thin vertical rule - the poster reference's
-   bottom icon row, in place of the single trust line, built only from
-   facts already verified elsewhere on this page (ticker, location
-   table, footer RERA number). */
-.hero-facts{display:flex;align-items:center;flex-wrap:wrap;row-gap:8px;column-gap:10px;
-  margin-top:14px;max-width:calc(100% - 20px)}
-.hero-fact{display:inline-flex;align-items:center;gap:5px;font-family:var(--util);
-  font-size:9px;font-weight:400;letter-spacing:1px;text-transform:uppercase;
+/* Compact amenity/connectivity fact strip - icon + short label, down
+   to the two strongest facts. The divider is a ::before on every
+   .hero-fact after the first, not a separate element between them -
+   so if the row wraps, the divider travels with the item it belongs
+   to onto the new line instead of being stranded at the old line's
+   end. */
+.hero-facts{display:flex;align-items:center;flex-wrap:wrap;row-gap:8px;column-gap:16px;
+  margin-top:16px;max-width:calc(100% - 20px)}
+.hero-fact{display:inline-flex;align-items:center;gap:6px;font-family:var(--util);
+  font-size:9.5px;font-weight:400;letter-spacing:1px;text-transform:uppercase;
   color:rgba(250,247,240,.8);text-shadow:0 1px 8px rgba(38,12,25,.7);white-space:nowrap}
 .hero-fact svg{width:14px;height:14px;flex:none;color:var(--gold)}
-.hero-fact-div{width:1px;height:12px;background:rgba(250,247,240,.35);flex:none}
+.hero-fact + .hero-fact{position:relative;padding-left:16px}
+.hero-fact + .hero-fact::before{content:"";position:absolute;left:0;top:50%;
+  transform:translateY(-50%);width:1px;height:12px;background:rgba(250,247,240,.35)}
 .hero-actions{display:none;gap:9px;max-width:420px}
 /* No buttons in the hero content on phones - see the HTML comment above
    this block. Both buttons return together at tablet width. */
@@ -967,8 +965,6 @@ body.locked{overflow:hidden}
       <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span>Off Nelamangala Road, Bengaluru</span>
       <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
       <h1>Apollo Address</h1>
-      <p class="hero-headline"><span class="hl-1">A Timeless</span><span class="hl-2">Lifestyle Begins Here</span></p>
-      <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
       <p class="hero-tagline">Greek-Themed Luxury Villa Plots</p>
       <!-- Two-cell bar - plot size range and starting price, both real
            and verified (Plots section: four configs, 1,200-1,800 sq.
@@ -981,14 +977,14 @@ body.locked{overflow:hidden}
         <button type="button" class="btn btn-gold" data-cta="hero">Get Priority Pricing</button>
         <a href="#project" class="btn btn-light" data-cta="hero-explore">See the Project</a>
       </div>
-      <!-- Bottom icon fact-strip, each fact verified elsewhere on this
-           page (amenities list, stats section, location table: NH 48
-           10 min, upcoming Nelamangala Metro Station 12 min). -->
+      <!-- Trimmed to the two strongest facts - the acreage stat is
+           already in the ticker/stats strip right below the fold, so
+           keeping it here too was adding a third line without adding
+           new information. Dividers are now a ::before on each
+           non-first .hero-fact (see CSS) rather than separate spans,
+           so a wrap never strands a lone divider at a line's end. -->
       <div class="hero-facts">
         <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21v-7h6v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Parthenon &ndash; The Club</span>
-        <span class="hero-fact-div" aria-hidden="true"></span>
-        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>23 Acres of Greek-Inspired Living</span>
-        <span class="hero-fact-div" aria-hidden="true"></span>
         <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21 6.5 3M16 21l1.5-18M10.5 21h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Near to Highways &amp; Metro</span>
       </div>
     </div>
