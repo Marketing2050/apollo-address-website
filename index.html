@@ -423,16 +423,15 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
 .hero-bg{position:absolute;inset:0;z-index:-2;background:var(--plum-deep);overflow:hidden}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center 38%}
-/* Lightened from the earlier heavy bottom scrim - that darkening was
-   there to keep a stacked text block legible. The hero copy is now a
-   visually-hidden h1 plus two opaque buttons (self-contained contrast,
-   no scrim needed), so the poster photo itself - the actual content
-   here now - should read at its own true golden-hour tone rather than
-   being dimmed for text that's no longer drawn over it. Just a soft
-   bottom fade remains, to ground the image into the section below. */
+/* The full copy block is back over the photo (see hero-inner below),
+   so the scrim needs to carry real text again - restored to a strength
+   between the original heavy version and the brief text-free version,
+   enough for the location/headline/price/fact lines to stay legible
+   against a bright golden-hour photo without flattening it to black. */
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(38,12,25,0) 0%,rgba(38,12,25,0) 68%,
-    rgba(38,12,25,.3) 88%,rgba(38,12,25,.5) 100%)}
+  background:linear-gradient(180deg,rgba(38,12,25,.04) 0%,rgba(38,12,25,.08) 18%,
+    rgba(38,12,25,.18) 36%,rgba(38,12,25,.38) 52%,rgba(38,12,25,.6) 66%,
+    rgba(38,12,25,.8) 80%,rgba(38,12,25,.93) 100%)}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
@@ -489,22 +488,29 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
   letter-spacing:2px;text-transform:uppercase;font-size:clamp(10.5px,2.6vw,12px);
   color:var(--cream-dk);margin-bottom:14px;text-shadow:0 1px 12px rgba(38,12,25,.65)}
 .hero-sub{color:rgba(250,247,240,.92);font-size:14.5px;margin-bottom:18px}
-/* Single starting-price ribbon - the official poster's own device for
-   this figure: a thin gold-bordered box, a small "Starting" label and
-   the figure itself large, in place of the earlier two-segment bar.
-   Plot count (362) isn't dropped from the hero - it's still the very
-   first thing in the ticker strip directly below the fold and in the
-   stats row after it - this box now matches the poster's single-figure
-   framing exactly rather than carrying two facts at once. */
-.hero-price{display:inline-block;position:relative;border:1px solid rgba(214,180,133,.55);
-  background:rgba(38,12,25,.58);backdrop-filter:blur(3px) saturate(120%);
-  -webkit-backdrop-filter:blur(3px) saturate(120%);padding:11px 20px;margin-bottom:20px;
+/* Two-cell fact bar - plot size range in an outlined cell, starting
+   price in a solid gold cell, joined edge-to-edge - the same structural
+   device as the poster reference's "sizes | starting price" strip,
+   built from Apollo Address's own real, verified figures (four plot
+   configurations from 1,200 to 1,800 sq. ft., matching the Plots
+   section below; starting price, matching the stats section). */
+.hero-bar{display:flex;position:relative;margin-bottom:20px;
   box-shadow:0 10px 26px rgba(20,6,14,.35)}
-.hero-price-label{display:block;font-family:var(--util);font-size:9.5px;letter-spacing:3px;
-  text-transform:uppercase;color:var(--gold);margin-bottom:2px}
-.hero-price-value{display:block;font-family:var(--serif);font-size:clamp(24px,6.5vw,32px);
-  font-weight:700;color:var(--cream);line-height:1}
-.hero-price-value sup{font-size:.5em;font-weight:400;vertical-align:text-top}
+.hero-bar-sizes{display:flex;flex-direction:column;justify-content:center;
+  border:1px solid rgba(245,240,230,.4);border-right:none;
+  background:rgba(38,12,25,.55);backdrop-filter:blur(3px) saturate(120%);
+  -webkit-backdrop-filter:blur(3px) saturate(120%);padding:9px 14px}
+.hero-bar-sizes-label{display:block;font-family:var(--util);font-size:8.5px;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(250,247,240,.7);margin-bottom:2px}
+.hero-bar-sizes-value{display:block;font-family:var(--serif);font-size:15px;
+  font-weight:700;color:var(--cream);line-height:1.15;white-space:nowrap}
+.hero-price{display:flex;flex-direction:column;justify-content:center;
+  background:var(--gold);padding:9px 16px}
+.hero-price-label{display:block;font-family:var(--util);font-size:8.5px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--plum-deep);margin-bottom:2px}
+.hero-price-value{display:block;font-family:var(--serif);font-size:17px;
+  font-weight:700;color:var(--plum-deep);line-height:1.15;white-space:nowrap}
+.hero-price-value sup{font-size:.6em;font-weight:400;vertical-align:text-top}
 /* Compact amenity/location/RERA fact strip - icon + short label,
    repeated, separated by a thin vertical rule - the poster reference's
    bottom icon row, in place of the single trust line, built only from
@@ -936,12 +942,13 @@ body.locked{overflow:hidden}
 </header>
 
 <!-- HERO
-     Uses the official Apollo Address poster photography exactly as
-     supplied - the golfer on the putting green at the Parthenon
-     gazebo, golden hour - full-bleed, with no HTML text drawn over it
-     (see the comment below). Mobile gets the portrait crop, matching
-     the poster's own portrait framing; desktop gets a wider 16:9 crop
-     of the same scene. -->
+     The official Apollo Address poster photography (the golfer at the
+     Parthenon gazebo putting green, golden hour) as the full-bleed
+     background, with the project's own real copy laid over it in the
+     poster's own elegant arrangement: badge+location, a dot-divider,
+     the project name and tagline, a second dot-divider, a two-cell
+     sizes/price bar, the CTAs, then a bottom icon fact-strip - built
+     mobile-first and carried up to desktop unchanged in structure. -->
 <section class="hero" id="top">
   <div class="hero-bg">
     <picture><source media="(max-width:767px)" type="image/webp"
@@ -952,20 +959,37 @@ body.locked{overflow:hidden}
       alt="Golden-hour view of the Parthenon-style clubhouse gazebo and putting green beside the landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async"></picture>
   </div>
   <div class="wrap">
-    <!-- The poster image now carries the project name, tagline, price
-         and amenities in-frame on its own - the HTML copy block that
-         used to repeat all of that over the photo has been removed so
-         it isn't shown twice. "Apollo Address" stays as a visually-
-         hidden h1 (sr-only) purely for SEO and screen readers - the
-         page still needs exactly one real h1 even though it's not
-         drawn on screen - and the two CTA buttons remain, since the
-         poster is a static ad creative with no working buttons of its
-         own and this is still a landing page people need to act from. -->
+    <!-- No "offer" badge or ribbon here (the poster reference's 20:80
+         payment plan ribbon has no Apollo Address equivalent - there's
+         no current offer to state), so the bar below carries only the
+         two facts that are real: plot sizes and starting price. -->
     <div class="hero-inner">
-      <h1 class="sr-only">Apollo Address &ndash; Greek-Themed Luxury Villa Plots Off Nelamangala Road, Bengaluru</h1>
+      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span>Off Nelamangala Road, Bengaluru</span>
+      <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
+      <h1>Apollo Address</h1>
+      <p class="hero-headline"><span class="hl-1">A Timeless</span><span class="hl-2">Lifestyle Begins Here</span></p>
+      <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
+      <p class="hero-tagline">Greek-Themed Luxury Villa Plots</p>
+      <!-- Two-cell bar - plot size range and starting price, both real
+           and verified (Plots section: four configs, 1,200-1,800 sq.
+           ft.; Stats section: from Rs 58 Lakhs). -->
+      <div class="hero-bar framed on-dark">
+        <span class="hero-bar-sizes"><span class="hero-bar-sizes-label">Villa Plots</span><span class="hero-bar-sizes-value">1,200&ndash;1,800 Sq.Ft.</span></span>
+        <span class="hero-price"><span class="hero-price-label">Starting</span><span class="hero-price-value">&#8377;58 Lakhs<sup>*</sup></span></span>
+      </div>
       <div class="hero-actions">
         <button type="button" class="btn btn-gold" data-cta="hero">Get Priority Pricing</button>
         <a href="#project" class="btn btn-light" data-cta="hero-explore">See the Project</a>
+      </div>
+      <!-- Bottom icon fact-strip, each fact verified elsewhere on this
+           page (amenities list, stats section, location table: NH 48
+           10 min, upcoming Nelamangala Metro Station 12 min). -->
+      <div class="hero-facts">
+        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21v-7h6v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Parthenon &ndash; The Club</span>
+        <span class="hero-fact-div" aria-hidden="true"></span>
+        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>23 Acres of Greek-Inspired Living</span>
+        <span class="hero-fact-div" aria-hidden="true"></span>
+        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21 6.5 3M16 21l1.5-18M10.5 21h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Near to Highways &amp; Metro</span>
       </div>
     </div>
     <!-- Scroll cue sits in its own corner, not stacked into the copy
