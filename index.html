@@ -547,6 +547,19 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
 .hero-fact + .hero-fact::before{content:"";position:absolute;left:0;top:4px;bottom:4px;
   width:1px;background:rgba(250,247,240,.3)}
 .hero-actions{display:none;gap:9px;max-width:420px}
+/* Phones only: the photo crop now sits the golfer higher in the frame
+   (see the mobile hero-full asset), which frees up more clear ground
+   for this block - but it still needs to be as compact as it can be so
+   it comfortably clears him rather than eating back that margin. Every
+   value below is a straight tightening of its un-prefixed rule above,
+   never a different design. */
+@media (max-width:767px){
+  h1{font-size:clamp(40px,12.5vw,58px);margin-bottom:6px}
+  .hero-rule{margin:5px 0 10px}
+  .hero-tagline{margin-bottom:11px}
+  .hero-bar{margin-bottom:14px}
+  .hero-facts{margin-top:12px}
+}
 /* No buttons in the hero content on phones - see the HTML comment above
    this block. Both buttons return together at tablet width. */
 /* Pinned to the hero's own bottom-right corner, not stacked into the
