@@ -24,12 +24,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
 <link rel="preload" as="image" fetchpriority="high" media="(max-width:767px)"
-  href="assets/hero-poster-portrait-720.webp"
-  imagesrcset="assets/hero-poster-portrait-480.webp 480w, assets/hero-poster-portrait-720.webp 720w, assets/hero-poster-portrait-960.webp 960w"
+  href="assets/hero-wide-960.webp"
+  imagesrcset="assets/hero-wide-480.webp 480w, assets/hero-wide-640.webp 640w, assets/hero-wide-768.webp 768w, assets/hero-wide-960.webp 960w"
   imagesizes="100vw">
 <link rel="preload" as="image" fetchpriority="high" media="(min-width:768px)"
-  href="assets/hero-poster-1280.webp"
-  imagesrcset="assets/hero-poster-640.webp 640w, assets/hero-poster-960.webp 960w, assets/hero-poster-1280.webp 1280w, assets/hero-poster-1600.webp 1600w, assets/hero-poster-1920.webp 1920w"
+  href="assets/hero-wide-1280.webp"
+  imagesrcset="assets/hero-wide-960.webp 960w, assets/hero-wide-1024.webp 1024w, assets/hero-wide-1280.webp 1280w, assets/hero-wide-1600.webp 1600w"
   imagesizes="100vw">
 
 <!--
@@ -437,7 +437,7 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
   padding:80px 0 28px;color:var(--cream);isolation:isolate}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:var(--plum-deep);overflow:hidden}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center 38%}
+  object-fit:cover;object-position:56% 50%}
 /* The full copy block is back over the photo (see hero-inner below),
    so the scrim needs to carry real text again - restored to a strength
    between the original heavy version and the brief text-free version,
@@ -521,21 +521,22 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
 .hero-price-value{display:block;font-family:var(--serif);font-size:17px;
   font-weight:700;color:var(--plum-deep);line-height:1.15;white-space:nowrap}
 .hero-price-value sup{font-size:.6em;font-weight:400;vertical-align:text-top}
-/* Compact amenity/connectivity fact strip - icon + short label, down
-   to the two strongest facts. The divider is a ::before on every
-   .hero-fact after the first, not a separate element between them -
-   so if the row wraps, the divider travels with the item it belongs
-   to onto the new line instead of being stranded at the old line's
-   end. */
-.hero-facts{display:flex;align-items:center;flex-wrap:wrap;row-gap:8px;column-gap:16px;
-  margin-top:16px;max-width:calc(100% - 20px)}
-.hero-fact{display:inline-flex;align-items:center;gap:6px;font-family:var(--util);
-  font-size:9.5px;font-weight:400;letter-spacing:1px;text-transform:uppercase;
-  color:rgba(250,247,240,.8);text-shadow:0 1px 8px rgba(38,12,25,.7);white-space:nowrap}
-.hero-fact svg{width:14px;height:14px;flex:none;color:var(--gold)}
-.hero-fact + .hero-fact{position:relative;padding-left:16px}
-.hero-fact + .hero-fact::before{content:"";position:absolute;left:0;top:50%;
-  transform:translateY(-50%);width:1px;height:12px;background:rgba(250,247,240,.35)}
+/* Three-column fact grid - icon stacked above a (possibly two-line)
+   label, divided by hairlines, instead of a single-line icon+text row.
+   The three-fact line is ~90 characters of tracked-out caps, which has
+   no legible single-line fit at mobile widths and was wrapping to 3
+   full-width stacked lines, eating a lot of the hero's vertical space.
+   Three short stacked labels in equal columns fit comfortably at 390px
+   with no wrapping mid-phrase - the same device the client's own poster
+   reference uses for this exact row. */
+.hero-facts{display:flex;margin-top:18px}
+.hero-fact{display:inline-flex;align-items:center;gap:7px;font-family:var(--util);
+  font-size:9.5px;font-weight:400;letter-spacing:1px;line-height:1.45;
+  text-transform:uppercase;color:rgba(250,247,240,.85);
+  text-shadow:0 1px 8px rgba(38,12,25,.7)}
+.hero-fact svg{width:16px;height:16px;flex:none;color:var(--gold)}
+.hero-fact + .hero-fact::before{content:"";position:absolute;left:0;top:4px;bottom:4px;
+  width:1px;background:rgba(250,247,240,.3)}
 .hero-actions{display:none;gap:9px;max-width:420px}
 /* No buttons in the hero content on phones - see the HTML comment above
    this block. Both buttons return together at tablet width. */
@@ -964,12 +965,12 @@ body.locked{overflow:hidden}
      mobile-first and carried up to desktop unchanged in structure. -->
 <section class="hero" id="top">
   <div class="hero-bg">
-    <picture><source media="(max-width:767px)" type="image/webp"
-      srcset="assets/hero-poster-portrait-480.webp 480w, assets/hero-poster-portrait-720.webp 720w, assets/hero-poster-portrait-960.webp 960w" sizes="100vw">
-    <source type="image/webp"
-      srcset="assets/hero-poster-640.webp 640w, assets/hero-poster-960.webp 960w, assets/hero-poster-1280.webp 1280w, assets/hero-poster-1600.webp 1600w, assets/hero-poster-1920.webp 1920w" sizes="100vw">
-    <img src="assets/hero-poster-1280.jpg" width="1280" height="720"
-      alt="Golden-hour view of the Parthenon-style clubhouse gazebo and putting green beside the landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async"></picture>
+    <picture><source type="image/webp"
+      srcset="assets/hero-wide-480.webp 480w, assets/hero-wide-640.webp 640w, assets/hero-wide-768.webp 768w, assets/hero-wide-960.webp 960w, assets/hero-wide-1024.webp 1024w, assets/hero-wide-1280.webp 1280w, assets/hero-wide-1600.webp 1600w" sizes="100vw">
+    <img src="assets/hero-wide-1280.jpg"
+      srcset="assets/hero-wide-480.jpg 480w, assets/hero-wide-640.jpg 640w, assets/hero-wide-768.jpg 768w, assets/hero-wide-960.jpg 960w, assets/hero-wide-1024.jpg 1024w, assets/hero-wide-1280.jpg 1280w, assets/hero-wide-1600.jpg 1600w" sizes="100vw"
+      width="1280" height="760"
+      alt="Golden-hour view of a golfer at the putting green beside the Parthenon-style clubhouse gazebo and landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async"></picture>
   </div>
   <div class="wrap">
     <!-- No "offer" badge or ribbon here (the poster reference's 20:80
@@ -977,7 +978,7 @@ body.locked{overflow:hidden}
          no current offer to state), so the bar below carries only the
          two facts that are real: plot sizes and starting price. -->
     <div class="hero-inner">
-      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span>Off Nelamangala Road, Bengaluru</span>
+      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span></span>
       <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
       <h1>Apollo Address</h1>
       <p class="hero-tagline">Greek-Themed Luxury Villa Plots</p>
@@ -999,9 +1000,7 @@ body.locked{overflow:hidden}
            non-first .hero-fact (see CSS) rather than separate spans,
            so a wrap never strands a lone divider at a line's end. -->
       <div class="hero-facts">
-        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V10l8-6 8 6v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 21v-7h6v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Parthenon &ndash; The Club</span>
-        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>23 Acres of Greek-Inspired Living</span>
-        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21 6.5 3M16 21l1.5-18M10.5 21h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Near Tumakuru Road &amp; NICE Road</span>
+        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.58 7-12a7 7 0 1 0-14 0c0 4.42 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Off Nelamangala Road, Nelamangala Growth Corridor</span></span>
       </div>
     </div>
     <!-- Scroll cue sits in its own corner, not stacked into the copy
