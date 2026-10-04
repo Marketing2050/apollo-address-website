@@ -24,8 +24,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
 <link rel="preload" as="image" fetchpriority="high" media="(max-width:767px)"
-  href="assets/hero-wide-960.webp"
-  imagesrcset="assets/hero-wide-480.webp 480w, assets/hero-wide-640.webp 640w, assets/hero-wide-768.webp 768w, assets/hero-wide-960.webp 960w"
+  href="assets/hero-full-828.webp"
+  imagesrcset="assets/hero-full-480.webp 480w, assets/hero-full-640.webp 640w, assets/hero-full-750.webp 750w, assets/hero-full-828.webp 828w, assets/hero-full-960.webp 960w, assets/hero-full-1080.webp 1080w"
   imagesizes="100vw">
 <link rel="preload" as="image" fetchpriority="high" media="(min-width:768px)"
   href="assets/hero-wide-1280.webp"
@@ -438,6 +438,15 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
 .hero-bg{position:absolute;inset:0;z-index:-2;background:var(--plum-deep);overflow:hidden}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:56% 50%}
+/* Below 768px the picture swaps to the full, uncropped portrait
+   version of the same photo (see markup) so the whole scene - sky,
+   gazebo, golfer, foreground flowers - reads as one complete frame
+   on a phone instead of a narrow sliver cut from the wide crop.
+   Its own subject sits closer to center, so the horizontal bias
+   used for the wide desktop crop isn't needed here. */
+@media (max-width:767px){
+  .hero-bg img{object-position:50% 8%}
+}
 /* The full copy block is back over the photo (see hero-inner below),
    so the scrim needs to carry real text again - restored to a strength
    between the original heavy version and the brief text-free version,
@@ -965,7 +974,11 @@ body.locked{overflow:hidden}
      mobile-first and carried up to desktop unchanged in structure. -->
 <section class="hero" id="top">
   <div class="hero-bg">
-    <picture><source type="image/webp"
+    <picture><source media="(max-width:767px)" type="image/webp"
+      srcset="assets/hero-full-480.webp 480w, assets/hero-full-640.webp 640w, assets/hero-full-750.webp 750w, assets/hero-full-828.webp 828w, assets/hero-full-960.webp 960w, assets/hero-full-1080.webp 1080w" sizes="100vw">
+    <source media="(max-width:767px)" type="image/jpeg"
+      srcset="assets/hero-full-480.jpg 480w, assets/hero-full-640.jpg 640w, assets/hero-full-750.jpg 750w, assets/hero-full-828.jpg 828w, assets/hero-full-960.jpg 960w, assets/hero-full-1080.jpg 1080w" sizes="100vw">
+    <source type="image/webp"
       srcset="assets/hero-wide-480.webp 480w, assets/hero-wide-640.webp 640w, assets/hero-wide-768.webp 768w, assets/hero-wide-960.webp 960w, assets/hero-wide-1024.webp 1024w, assets/hero-wide-1280.webp 1280w, assets/hero-wide-1600.webp 1600w" sizes="100vw">
     <img src="assets/hero-wide-1280.jpg"
       srcset="assets/hero-wide-480.jpg 480w, assets/hero-wide-640.jpg 640w, assets/hero-wide-768.jpg 768w, assets/hero-wide-960.jpg 960w, assets/hero-wide-1024.jpg 1024w, assets/hero-wide-1280.jpg 1280w, assets/hero-wide-1600.jpg 1600w" sizes="100vw"
