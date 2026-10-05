@@ -24,9 +24,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
 <link rel="preload" as="image" fetchpriority="high" media="(max-width:767px)"
-  href="assets/hero-m-828.webp"
-  imagesrcset="assets/hero-m-480.webp 480w, assets/hero-m-640.webp 640w, assets/hero-m-750.webp 750w, assets/hero-m-828.webp 828w, assets/hero-m-960.webp 960w, assets/hero-m-1080.webp 1080w"
-  imagesizes="100vw">
+    href="assets/hero-p-828.webp"
+    imagesrcset="assets/hero-p-480.webp 480w, assets/hero-p-640.webp 640w, assets/hero-p-750.webp 750w, assets/hero-p-828.webp 828w, assets/hero-p-960.webp 960w, assets/hero-p-1024.webp 1024w"
+    imagesizes="100vw">
 <link rel="preload" as="image" fetchpriority="high" media="(min-width:768px)"
   href="assets/hero-wide-1280.webp"
   imagesrcset="assets/hero-wide-960.webp 960w, assets/hero-wide-1024.webp 1024w, assets/hero-wide-1280.webp 1280w, assets/hero-wide-1600.webp 1600w"
@@ -553,6 +553,57 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
 h1{color:#e8d5ae}
 .hero-facts{flex-direction:column;gap:8px}
 .hero-fact + .hero-fact::before{display:none}
+
+/* ---------- Mobile poster-style hero (phones only) ----------
+   Photo on top with the name in the sky, plum panel below with
+   location, price and three highlights - nothing sits on the golfer.
+   Desktop/tablet keep the original wide hero untouched. */
+.hm{display:none}
+@media (max-width:767px){
+  .hero{display:block;min-height:0;padding:0;background:var(--plum-deep)}
+  .hero-bg,.hero::after,.hero>.wrap,.hero-scroll{display:none}
+  .hm{display:block}
+  .hm-photo{position:relative;line-height:0;background:#7fb4e6}
+  .hm-photo img{display:block;width:100%;height:auto}
+  .hm-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;
+    background:linear-gradient(180deg,rgba(38,12,25,0),rgba(38,12,25,.55) 55%,#260c19 100%);pointer-events:none}
+  .hm-title{position:absolute;top:calc(8.4vw + 40px);left:0;right:0;text-align:center;line-height:1.1;z-index:1}
+  .hm-by{display:block;font-family:var(--util);font-size:10px;letter-spacing:3px;text-transform:uppercase;
+    color:#5a1230;font-weight:400;margin-bottom:6px}
+  .hm-h1{font-family:var(--serif);font-weight:700;font-size:clamp(38px,11.6vw,52px);line-height:1;
+    color:#4d0f27;letter-spacing:-.2px;text-shadow:0 1px 14px rgba(255,255,255,.28)}
+  .hm-rule{display:flex;align-items:center;justify-content:center;gap:9px;margin:10px auto 10px;width:70%;max-width:280px}
+  .hm-rule::before,.hm-rule::after{content:"";flex:1;height:1px;background:rgba(77,15,39,.55)}
+  .hm-rule i{width:5px;height:5px;transform:rotate(45deg);background:#4d0f27;flex:none}
+  .hm-rule-gold{width:calc(100% - 48px);max-width:none;margin:12px auto 14px}
+  .hm-rule-gold::before,.hm-rule-gold::after{background:rgba(214,180,133,.6)}
+  .hm-rule-gold i{background:var(--gold)}
+  .hm-tag{font-family:var(--util);font-size:clamp(10px,2.9vw,12px);letter-spacing:2.3px;text-transform:uppercase;color:#5a1230}
+  .hm-bottom{position:relative;margin-top:-30px;padding:0 24px 26px;z-index:1}
+  .hm-loc{display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--util);
+    font-size:clamp(11px,3.1vw,13px);letter-spacing:1.8px;text-transform:uppercase;color:var(--cream)}
+  .hm-loc svg{width:18px;height:18px;color:var(--gold);flex:none}
+  .hm-rule-gold{padding:0}
+  .hm-bar{position:relative;display:flex;box-shadow:0 10px 26px rgba(10,2,6,.4)}
+  .hm-bar::before,.hm-bar::after{content:"";position:absolute;width:12px;height:12px;border:1px solid var(--gold);pointer-events:none}
+  .hm-bar::before{left:-5px;top:-5px;border-right:0;border-bottom:0}
+  .hm-bar::after{right:-5px;bottom:-5px;border-left:0;border-top:0}
+  .hm-bar-l{flex:1.2;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    background:#600d29;border:1px solid rgba(214,180,133,.35);border-right:0;padding:12px 8px}
+  .hm-bar-l b{font-family:var(--serif);font-weight:700;font-size:clamp(19px,6vw,25px);line-height:1.05;color:var(--cream);white-space:nowrap}
+  .hm-bar-l small{font-family:var(--util);font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--cream-dk);margin-top:5px}
+  .hm-bar-r{flex:1;display:flex;flex-direction:column;justify-content:center;padding:12px 10px 12px 16px;
+    background:linear-gradient(100deg,#d8b676,#efd9a2 55%,#d4ae6d)}
+  .hm-bar-r small{font-family:var(--util);font-size:9.5px;letter-spacing:2.2px;text-transform:uppercase;color:#3b1326}
+  .hm-bar-r b{font-family:var(--serif);font-weight:700;font-size:clamp(22px,7vw,30px);line-height:1.1;color:#3b1326;white-space:nowrap}
+  .hm-bar-r sup{font-size:.5em;font-weight:400;vertical-align:top;position:relative;top:.15em}
+  .hm-feats{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);margin:22px 0 0;padding:0}
+  .hm-feats li{display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px;padding:2px 8px;
+    font-family:var(--util);font-size:9px;letter-spacing:1.2px;line-height:1.5;text-transform:uppercase;color:var(--cream)}
+  .hm-feats li + li{border-left:1px solid rgba(214,180,133,.45)}
+  .hm-feats span{display:block}
+  .hm-feats svg{width:34px;height:34px;color:var(--gold);flex:none}
+}
 .hero-actions{display:none;gap:9px;max-width:420px}
 /* Phones only. The mobile hero-full crop now sits the golfer much
    higher in frame, so this block has real breathing room again - back
@@ -997,16 +1048,41 @@ body.locked{overflow:hidden}
      mobile-first and carried up to desktop unchanged in structure. -->
 <section class="hero" id="top">
   <div class="hero-bg">
-    <picture><source media="(max-width:767px)" type="image/webp"
-      srcset="assets/hero-m-480.webp 480w, assets/hero-m-640.webp 640w, assets/hero-m-750.webp 750w, assets/hero-m-828.webp 828w, assets/hero-m-960.webp 960w, assets/hero-m-1080.webp 1080w" sizes="100vw">
-    <source media="(max-width:767px)" type="image/jpeg"
-      srcset="assets/hero-m-480.jpg 480w, assets/hero-m-640.jpg 640w, assets/hero-m-750.jpg 750w, assets/hero-m-828.jpg 828w, assets/hero-m-960.jpg 960w, assets/hero-m-1080.jpg 1080w" sizes="100vw">
+    <picture><source media="(max-width:767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
     <source type="image/webp"
       srcset="assets/hero-wide-480.webp 480w, assets/hero-wide-640.webp 640w, assets/hero-wide-768.webp 768w, assets/hero-wide-960.webp 960w, assets/hero-wide-1024.webp 1024w, assets/hero-wide-1280.webp 1280w, assets/hero-wide-1600.webp 1600w" sizes="100vw">
     <img src="assets/hero-wide-1280.jpg"
       srcset="assets/hero-wide-480.jpg 480w, assets/hero-wide-640.jpg 640w, assets/hero-wide-768.jpg 768w, assets/hero-wide-960.jpg 960w, assets/hero-wide-1024.jpg 1024w, assets/hero-wide-1280.jpg 1280w, assets/hero-wide-1600.jpg 1600w" sizes="100vw"
       width="1280" height="760"
       alt="Golden-hour view of a golfer at the putting green beside the Parthenon-style clubhouse gazebo and landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async"></picture>
+  </div>
+  <div class="hm">
+    <div class="hm-photo">
+      <picture>
+        <source media="(min-width:768px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        <source type="image/webp" srcset="assets/hero-p-480.webp 480w, assets/hero-p-640.webp 640w, assets/hero-p-750.webp 750w, assets/hero-p-828.webp 828w, assets/hero-p-960.webp 960w, assets/hero-p-1024.webp 1024w" sizes="100vw">
+        <img src="assets/hero-p-828.jpg" srcset="assets/hero-p-480.jpg 480w, assets/hero-p-640.jpg 640w, assets/hero-p-750.jpg 750w, assets/hero-p-828.jpg 828w, assets/hero-p-960.jpg 960w, assets/hero-p-1024.jpg 1024w" sizes="100vw" width="1024" height="1380" alt="Golden-hour view of a golfer at the putting green beside the Parthenon-style clubhouse gazebo and landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async">
+      </picture>
+      <div class="hm-title">
+        <span class="hm-by">By Address Maker</span>
+        <p class="hm-h1" role="heading" aria-level="1">Apollo Address</p>
+        <span class="hm-rule" aria-hidden="true"><i></i></span>
+        <p class="hm-tag">Greek-Themed Luxury Villa Plots</p>
+      </div>
+    </div>
+    <div class="hm-bottom">
+      <p class="hm-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.58 7-12a7 7 0 1 0-14 0c0 4.42 7 12 7 12Z" fill="currentColor"/><circle cx="12" cy="9" r="2.6" fill="#260c19"/></svg><span>Off Nelamangala Road, Bengaluru</span></p>
+      <span class="hm-rule hm-rule-gold" aria-hidden="true"><i></i></span>
+      <div class="hm-bar">
+        <span class="hm-bar-l"><b>1,200 &ndash; 1,800</b><small>Sq.Ft. Villa Plots</small></span>
+        <span class="hm-bar-r"><small>Starting</small><b>&#8377;58 Lakhs<sup>*</sup></b></span>
+      </div>
+      <ul class="hm-feats">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5H3ZM5 12v6m4-6v6m6-6v6m4-6v6M3 20.5h18M4 18h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Parthenon &ndash; The Club</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-9m0 0C12 8 15 5 20 4c0 5-3 9-8 9Zm0 3c0-3-2-5-7-5 0 3 2 5 7 5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>23 Acres of Greek-Inspired Living</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3 4 21M15 3l5 18M12 4v3m0 4v3m0 4v2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>10 min to NH48<br>12 min to upcoming Metro</span></li>
+      </ul>
+    </div>
   </div>
   <div class="wrap">
     <!-- No "offer" badge or ribbon here (the poster reference's 20:80
