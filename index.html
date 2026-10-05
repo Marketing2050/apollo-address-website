@@ -546,6 +546,13 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
 .hero-fact svg{width:16px;height:16px;flex:none;color:var(--gold)}
 .hero-fact + .hero-fact::before{content:"";position:absolute;left:0;top:4px;bottom:4px;
   width:1px;background:rgba(250,247,240,.3)}
+
+/* Hero byline + beige headline (replaces the Pre-Launch pill) */
+.hero-by{color:#e8d5ae;font-weight:600;letter-spacing:3px;font-size:11px;text-transform:uppercase;margin-bottom:2px}
+.hero .hero-by{color:#e8d5ae}
+h1{color:#e8d5ae}
+.hero-facts{flex-direction:column;gap:8px}
+.hero-fact + .hero-fact::before{display:none}
 .hero-actions{display:none;gap:9px;max-width:420px}
 /* Phones only. The mobile hero-full crop now sits the golfer much
    higher in frame, so this block has real breathing room again - back
@@ -556,7 +563,7 @@ h1{font-family:var(--serif);font-size:clamp(46px,14vw,64px);line-height:.98;
    the location line to read as a finished block above it rather than
    jammed against it. */
 @media (max-width:767px){
-  .hero{padding-bottom:calc(var(--bar) + var(--safe) + 30px)}
+  .hero{padding-bottom:22px}
   h1{font-size:clamp(36px,11vw,50px);margin-bottom:7px}
   .hero-rule{margin:5px 0 11px}
   .hero-tagline{margin-bottom:13px}
@@ -1007,7 +1014,7 @@ body.locked{overflow:hidden}
          no current offer to state), so the bar below carries only the
          two facts that are real: plot sizes and starting price. -->
     <div class="hero-inner">
-      <span class="eyebrow eyebrow-hero eyebrow-badge"><span class="badge-pill">Pre-Launch</span></span>
+      <span class="eyebrow eyebrow-hero eyebrow-badge hero-by">By Address Maker</span>
       <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
       <h1>Apollo Address</h1>
       <p class="hero-tagline">Greek-Themed Luxury Villa Plots</p>
@@ -1030,6 +1037,8 @@ body.locked{overflow:hidden}
            so a wrap never strands a lone divider at a line's end. -->
       <div class="hero-facts">
         <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.58 7-12a7 7 0 1 0-14 0c0 4.42 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Off Nelamangala Road, Nelamangala Growth Corridor</span></span>
+      <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Zm-2 18 2-3m12 3-2-3M4 11h16M8.5 14.5h.01M15.5 14.5h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>12 min to upcoming Nelamangala Metro</span></span>
+        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 5 21M16 3l3 18M12 4v3m0 4v3m0 4v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>10 min to Mumbai&ndash;Pune NH48 Highway</span></span>
       </div>
     </div>
     <!-- Scroll cue sits in its own corner, not stacked into the copy
