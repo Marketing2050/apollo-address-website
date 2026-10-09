@@ -1059,50 +1059,6 @@ body.locked{overflow:hidden}
 @media (min-width:768px) and (max-width:1023px){
   .section.bg-photo:not(#enquire){padding-top:110px}
 }
-
-/* Immersive mobile hero: brighter photo, slow cinematic drift, photo melts into the
-   bottom stack (no hard panel edge), bigger price bar, in-hero call to action. */
-.hm-cta,.hm-link{display:none}
-@media (max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait){
-  .hm-photo img{filter:brightness(1.07) saturate(1.1) contrast(1.02);transform-origin:30% 55%;
-    animation:hmDrift 22s ease-in-out infinite alternate}
-  @keyframes hmDrift{from{transform:translateY(-12px) scale(1)}to{transform:translateY(-12px) scale(1.06)}}
-  .hm-photo::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-    background:radial-gradient(ellipse 120% 80% at 50% 38%,rgba(255,255,255,0) 55%,rgba(38,12,25,.28) 100%),
-      linear-gradient(180deg,rgba(255,244,222,.16) 0%,rgba(255,244,222,0) 30%)}
-  .hm-photo::after{height:34%;background:linear-gradient(180deg,rgba(38,12,25,0) 0%,rgba(38,12,25,.4) 38%,rgba(38,12,25,.82) 72%,#260c19 100%)}
-  .hm-title{top:70px}
-  .hm-h1{font-size:clamp(38px,11.2vw,54px);text-shadow:0 2px 18px rgba(255,255,255,.4)}
-  .hm-bottom{margin-top:-44px;padding:0 20px 30px;
-    background:linear-gradient(180deg,rgba(38,12,25,0),#260c19 46px)}
-  .hm-loc{text-shadow:0 1px 8px rgba(10,2,6,.7)}
-  .hm-bar{box-shadow:0 14px 34px rgba(10,2,6,.5)}
-  .hm-bar-l{padding:13px 8px}
-  .hm-bar-l b{font-size:clamp(19px,6.2vw,27px)}
-  .hm-bar-l small{font-size:10px}
-  .hm-bar-r{padding:13px 10px 13px 16px}
-  .hm-bar-r small{font-size:10px}
-  .hm-bar-r b{font-size:clamp(23px,7.4vw,33px)}
-  .hm-cta{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:14px;
-    padding:0 22px;min-height:52px;border:1px solid rgba(255,244,222,.55);border-radius:6px;cursor:pointer;
-    background:linear-gradient(100deg,#d8b676,#efd9a2 55%,#d4ae6d);color:#3b1326;
-    font-family:var(--util);font-weight:600;font-size:15px;letter-spacing:2.4px;text-transform:uppercase;
-    box-shadow:0 10px 24px rgba(10,2,6,.4)}
-  .hm-cta svg{width:22px;height:22px}
-  .hm-link{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px auto 0;padding:8px 6px;
-    background:none;border:0;color:var(--cream);cursor:pointer;font-family:var(--util);font-size:12.5px;
-    letter-spacing:1.8px;text-transform:uppercase;border-bottom:1px solid rgba(245,240,230,.5)}
-  .hm-link svg{width:15px;height:15px}
-  .hero,.hm-bottom{background-color:#260c19}
-}
-@media (prefers-reduced-motion:reduce){.hm-photo img{animation:none}}
-@media (min-width:768px) and (max-width:1023px) and (orientation:portrait){
-  .hm{max-width:none}
-  .hm-photo{max-width:640px;margin:0 auto;
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
-    mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
-  .hm-bottom{max-width:640px;margin:-44px auto 0}
-}
 </style>
 </head>
 <body>
@@ -1167,8 +1123,6 @@ body.locked{overflow:hidden}
         <span class="hm-bar-l"><b>1,200 &ndash; 1,800</b><small>Sq.Ft. Villa Plots</small></span>
         <span class="hm-bar-r"><small>Starting</small><b>&#8377;62 Lakhs<sup>*</sup></b></span>
       </div>
-      <button type="button" class="hm-cta" data-cta="hero-mobile">Enquire Now<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button type="button" class="hm-link" data-cta="hero-mobile-pricing">Get Priority Pricing<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
   </div>
   <div class="wrap">
