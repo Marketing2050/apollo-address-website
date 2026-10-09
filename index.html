@@ -1042,7 +1042,7 @@ body.locked{overflow:hidden}
 @media (max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait){
   .ticker{display:none}
   .stat.m-only{display:block}
-  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats>.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stats .stat{padding:20px 12px;border-bottom:1px solid rgba(245,240,230,.18)}
   .stats .stat:nth-child(2n){border-right:0}
   .stats .stat:nth-last-child(-n+2){border-bottom:0}
@@ -1052,6 +1052,12 @@ body.locked{overflow:hidden}
 }
 @media (min-width:1024px),(min-width:768px) and (max-width:1023px) and (orientation:landscape){
   .hero-inner .hero-fact,.hero-inner .hero-eyebrow{text-shadow:0 1px 8px rgba(38,12,25,.55)}
+}
+@media (max-width:767px){
+  .section.bg-photo:not(#enquire){padding-top:76px}
+}
+@media (min-width:768px) and (max-width:1023px){
+  .section.bg-photo:not(#enquire){padding-top:110px}
 }
 </style>
 </head>
