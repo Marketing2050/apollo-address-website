@@ -11,25 +11,25 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Apollo Address | Greek-Themed Villa Plots from Rs 62 Lakhs*">
 <meta property="og:description" content="362 exclusive villa plots off Nelamangala Road, North Bengaluru. Register for priority pricing.">
-<meta property="og:image" content="https://apolloaddress.com/assets/og-image.jpg">
+<meta property="og:image" content="https://apolloaddress.com/assets/og-image-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1200">
 <meta property="og:url" content="https://apolloaddress.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://apolloaddress.com/assets/og-image.jpg">
+<meta name="twitter:image" content="https://apolloaddress.com/assets/og-image-v2.jpg">
 <meta name="theme-color" content="#49163b">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Tenor+Sans&display=swap" rel="stylesheet">
 
-<link rel="preload" as="image" fetchpriority="high" media="(max-width:767px)"
-    href="assets/hero-p-828.webp"
-    imagesrcset="assets/hero-p-480.webp 480w, assets/hero-p-640.webp 640w, assets/hero-p-750.webp 750w, assets/hero-p-828.webp 828w, assets/hero-p-960.webp 960w, assets/hero-p-1024.webp 1024w"
+<link rel="preload" as="image" fetchpriority="high" media="(max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait)"
+    href="assets/golf-m-750.webp"
+    imagesrcset="assets/golf-m-480.webp 480w, assets/golf-m-640.webp 640w, assets/golf-m-750.webp 750w, assets/golf-m-793.webp 793w"
     imagesizes="100vw">
-<link rel="preload" as="image" fetchpriority="high" media="(min-width:768px)"
-  href="assets/hero-wide-1280.webp"
-  imagesrcset="assets/hero-wide-960.webp 960w, assets/hero-wide-1024.webp 1024w, assets/hero-wide-1280.webp 1280w, assets/hero-wide-1600.webp 1600w"
+<link rel="preload" as="image" fetchpriority="high" media="(min-width:1024px),(min-width:768px) and (max-width:1023px) and (orientation:landscape)"
+  href="assets/golf-d-1280.webp"
+  imagesrcset="assets/golf-d-768.webp 768w, assets/golf-d-960.webp 960w, assets/golf-d-1280.webp 1280w, assets/golf-d-1600.webp 1600w, assets/golf-d-1734.webp 1734w"
   imagesizes="100vw">
 
 <!--
@@ -437,7 +437,7 @@ header .mark{position:absolute;right:0;top:0;height:100%;width:150px;opacity:.07
   padding:80px 0 28px;color:var(--cream);isolation:isolate}
 .hero-bg{position:absolute;inset:0;z-index:-2;background:var(--plum-deep);overflow:hidden}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:56% 50%}
+  object-fit:cover;object-position:22% 50%}
 /* Below 768px the picture swaps to the full, uncropped portrait
    version of the same photo (see markup) so the whole scene - sky,
    gazebo, golfer, foreground flowers - reads as one complete frame
@@ -559,12 +559,12 @@ h1{color:#e8d5ae}
    location, price and three highlights - nothing sits on the golfer.
    Desktop/tablet keep the original wide hero untouched. */
 .hm{display:none}
-@media (max-width:767px){
+@media (max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait){
   .hero{display:block;min-height:0;padding:0;background:var(--plum-deep)}
   .hero>.hero-bg,.hero::after,.hero>.wrap,.hero>.hero-scroll{display:none}
   .hm{display:block}
-  .hm-photo{position:relative;line-height:0;background:#7fb4e6;overflow:hidden;height:126.8vw}
-  .hm-photo img{position:absolute;left:0;bottom:0;display:block;width:100%;height:auto}
+  .hm-photo{position:relative;line-height:0;background:#6fb1ea;overflow:hidden;aspect-ratio:793/1060}
+  .hm-photo img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
   .hm-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;
     background:linear-gradient(180deg,rgba(38,12,25,0),rgba(38,12,25,.55) 55%,#260c19 100%);pointer-events:none}
   .hm-title{position:absolute;top:64px;left:0;right:0;text-align:center;line-height:1.1;z-index:1}
@@ -606,7 +606,13 @@ h1{color:#e8d5ae}
   .hm-feats span{display:block;font-family:var(--util);font-size:clamp(9px,2.5vw,10px);letter-spacing:.6px;line-height:1.45;
     text-transform:uppercase;color:var(--cream-dk);text-wrap:balance}
 }
-@media (min-width:768px){
+@media (min-width:1024px),(min-width:768px) and (max-width:1023px) and (orientation:landscape){
+  .hero>.wrap{display:flex;justify-content:flex-end}
+  .hero::after{background:radial-gradient(ellipse 620px 470px at 71% 66%,rgba(38,12,25,.66),rgba(38,12,25,.3) 55%,rgba(38,12,25,0) 78%),linear-gradient(180deg,rgba(38,12,25,.04) 0%,rgba(38,12,25,.08) 18%,
+    rgba(38,12,25,.18) 36%,rgba(38,12,25,.38) 52%,rgba(38,12,25,.6) 66%,
+    rgba(38,12,25,.8) 80%,rgba(38,12,25,.93) 100%)}
+  .hero-inner{width:min(480px,100%);max-width:none;flex:none}
+  .hero-actions{max-width:none}
   .hero-facts{gap:10px}
   .hero-fact{font-size:11.5px;letter-spacing:1.2px;gap:10px}
   .hero-fact svg{width:18px;height:18px}
@@ -1020,6 +1026,14 @@ body.locked{overflow:hidden}
   .signature{min-height:640px;padding:80px 0}
   .gate-wrap{gap:76px}
 }
+
+/* Tablet portrait uses the same poster-style hero as phones (the wide photo
+   would crop the golfer at that shape). Placed last so it wins over the
+   generic tablet .hero rules above. */
+@media (min-width:768px) and (max-width:1023px) and (orientation:portrait){
+  .hero{display:block;min-height:0;padding:0 0 22px;background:var(--plum-deep)}
+  .hm{max-width:600px;margin:0 auto}
+}
 </style>
 </head>
 <body>
@@ -1055,20 +1069,20 @@ body.locked{overflow:hidden}
      mobile-first and carried up to desktop unchanged in structure. -->
 <section class="hero" id="top">
   <div class="hero-bg">
-    <picture><source media="(max-width:767px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <picture><source media="(max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
     <source type="image/webp"
-      srcset="assets/hero-wide-480.webp 480w, assets/hero-wide-640.webp 640w, assets/hero-wide-768.webp 768w, assets/hero-wide-960.webp 960w, assets/hero-wide-1024.webp 1024w, assets/hero-wide-1280.webp 1280w, assets/hero-wide-1600.webp 1600w" sizes="100vw">
-    <img src="assets/hero-wide-1280.jpg"
-      srcset="assets/hero-wide-480.jpg 480w, assets/hero-wide-640.jpg 640w, assets/hero-wide-768.jpg 768w, assets/hero-wide-960.jpg 960w, assets/hero-wide-1024.jpg 1024w, assets/hero-wide-1280.jpg 1280w, assets/hero-wide-1600.jpg 1600w" sizes="100vw"
-      width="1280" height="760"
-      alt="Golden-hour view of a golfer at the putting green beside the Parthenon-style clubhouse gazebo and landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async"></picture>
+      srcset="assets/golf-d-768.webp 768w, assets/golf-d-960.webp 960w, assets/golf-d-1280.webp 1280w, assets/golf-d-1600.webp 1600w, assets/golf-d-1734.webp 1734w" sizes="100vw">
+    <img src="assets/golf-d-1280.jpg"
+      srcset="assets/golf-d-768.jpg 768w, assets/golf-d-960.jpg 960w, assets/golf-d-1280.jpg 1280w, assets/golf-d-1600.jpg 1600w, assets/golf-d-1734.jpg 1734w" sizes="100vw"
+      width="1734" height="907"
+      alt="Golfer finishing a swing beside a landscaped waterbody on the course at Apollo Address" fetchpriority="high" decoding="async"></picture>
   </div>
   <div class="hm">
     <div class="hm-photo">
       <picture>
-        <source media="(min-width:768px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-        <source type="image/webp" srcset="assets/hero-p-480.webp 480w, assets/hero-p-640.webp 640w, assets/hero-p-750.webp 750w, assets/hero-p-828.webp 828w, assets/hero-p-960.webp 960w, assets/hero-p-1024.webp 1024w" sizes="100vw">
-        <img src="assets/hero-p-828.jpg" srcset="assets/hero-p-480.jpg 480w, assets/hero-p-640.jpg 640w, assets/hero-p-750.jpg 750w, assets/hero-p-828.jpg 828w, assets/hero-p-960.jpg 960w, assets/hero-p-1024.jpg 1024w" sizes="100vw" width="1024" height="1380" alt="Golden-hour view of a golfer at the putting green beside the Parthenon-style clubhouse gazebo and landscaped waterbody at Apollo Address" fetchpriority="high" decoding="async">
+        <source media="(min-width:1024px),(min-width:768px) and (max-width:1023px) and (orientation:landscape)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        <source type="image/webp" srcset="assets/golf-m-480.webp 480w, assets/golf-m-640.webp 640w, assets/golf-m-750.webp 750w, assets/golf-m-793.webp 793w" sizes="100vw">
+        <img src="assets/golf-m-750.jpg" srcset="assets/golf-m-480.jpg 480w, assets/golf-m-640.jpg 640w, assets/golf-m-750.jpg 750w, assets/golf-m-793.jpg 793w" sizes="100vw" width="793" height="1060" alt="Golfer finishing a swing beside a landscaped waterbody on the course at Apollo Address" fetchpriority="high" decoding="async">
       </picture>
       <div class="hm-title">
         <span class="hm-by">By Address Maker</span>
