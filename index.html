@@ -608,7 +608,7 @@ h1{color:#e8d5ae}
 }
 @media (min-width:1024px),(min-width:768px) and (max-width:1023px) and (orientation:landscape){
   .hero>.wrap{display:flex;justify-content:flex-end}
-  .hero::after{background:radial-gradient(ellipse 620px 470px at 71% 66%,rgba(38,12,25,.66),rgba(38,12,25,.3) 55%,rgba(38,12,25,0) 78%),linear-gradient(180deg,rgba(38,12,25,.04) 0%,rgba(38,12,25,.08) 18%,
+  .hero::after{background:linear-gradient(90deg,rgba(38,12,25,0) 0%,rgba(38,12,25,0) 34%,rgba(38,12,25,.14) 52%,rgba(38,12,25,.3) 72%,rgba(38,12,25,.38) 100%),linear-gradient(180deg,rgba(38,12,25,.04) 0%,rgba(38,12,25,.08) 18%,
     rgba(38,12,25,.18) 36%,rgba(38,12,25,.38) 52%,rgba(38,12,25,.6) 66%,
     rgba(38,12,25,.8) 80%,rgba(38,12,25,.93) 100%)}
   .hero-inner{width:min(480px,100%);max-width:none;flex:none}
@@ -1034,6 +1034,25 @@ body.locked{overflow:hidden}
   .hero{display:block;min-height:0;padding:0 0 22px;background:var(--plum-deep)}
   .hm{max-width:600px;margin:0 auto}
 }
+
+/* stats: desktop = 4 cells; phone/portrait-tablet = one grouped 2x3 "at a glance" block */
+.stat.m-only{display:none}
+.stat-loc b{font-size:clamp(15px,4.6vw,20px);line-height:1.2}
+@media (min-width:768px){.stat-loc b{font-size:22px}}
+@media (max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait){
+  .ticker{display:none}
+  .stat.m-only{display:block}
+  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats .stat{padding:20px 12px;border-bottom:1px solid rgba(245,240,230,.18)}
+  .stats .stat:nth-child(2n){border-right:0}
+  .stats .stat:nth-last-child(-n+2){border-bottom:0}
+  .stats .stat b{font-size:clamp(22px,6.8vw,30px)}
+  .stats .stat-loc b{font-size:clamp(15px,4.6vw,20px)}
+  .stats .stat span{font-size:9px;letter-spacing:1.4px;line-height:1.5}
+}
+@media (min-width:1024px),(min-width:768px) and (max-width:1023px) and (orientation:landscape){
+  .hero-inner .hero-fact,.hero-inner .hero-eyebrow{text-shadow:0 1px 8px rgba(38,12,25,.55)}
+}
 </style>
 </head>
 <body>
@@ -1098,11 +1117,6 @@ body.locked{overflow:hidden}
         <span class="hm-bar-l"><b>1,200 &ndash; 1,800</b><small>Sq.Ft. Villa Plots</small></span>
         <span class="hm-bar-r"><small>Starting</small><b>&#8377;62 Lakhs<sup>*</sup></b></span>
       </div>
-      <ul class="hm-feats">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5H3ZM5 12v6m4-6v6m6-6v6m4-6v6M3 20.5h18M4 18h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>20,000</b><span>Sq.Ft. Parthenon &ndash; The Grand Clubhouse</span></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-9m0 0C12 8 15 5 20 4c0 5-3 9-8 9Zm0 3c0-3-2-5-7-5 0 3 2 5 7 5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>23</b><span>Acres of Greek-inspired living</span></li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Zm-2 18 2-3m12 3-2-3M4 11h16M8.5 14.5h.01M15.5 14.5h.01" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><b>12</b><span>Min to upcoming Nelamangala Metro</span></li>
-      </ul>
     </div>
   </div>
   <div class="wrap">
@@ -1133,7 +1147,7 @@ body.locked{overflow:hidden}
            non-first .hero-fact (see CSS) rather than separate spans,
            so a wrap never strands a lone divider at a line's end. -->
       <div class="hero-facts">
-        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.58 7-12a7 7 0 1 0-14 0c0 4.42 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Off Nelamangala Road, Nelamangala Growth Corridor</span></span>
+        <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.58 7-12a7 7 0 1 0-14 0c0 4.42 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Nelamangala Growth Corridor</span></span>
         <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5H3ZM5 12v6m4-6v6m6-6v6m4-6v6M3 20.5h18M4 18h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>20,000 Sq.Ft. Parthenon &ndash; The Grand Clubhouse</span></span>
         <span class="hero-fact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Zm-2 18 2-3m12 3-2-3M4 11h16M8.5 14.5h.01M15.5 14.5h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>12 min to upcoming Nelamangala Metro</span></span>
       </div>
@@ -1153,7 +1167,7 @@ body.locked{overflow:hidden}
   <div class="ticker-track" id="tickerTrack">
     <span>362 Exclusive Plots</span><i class="ticker-mark"></i><span>Greek-Themed Development</span><i class="ticker-mark"></i>
 <span>Clubhouse &amp; Putting Green</span><i class="ticker-mark"></i>
-    <span>Nelamangala Growth Corridor</span><i class="ticker-mark"></i><span>By Address Maker</span><i class="ticker-mark"></i>
+    <span>Off Nelamangala Road</span><i class="ticker-mark"></i><span>By Address Maker</span><i class="ticker-mark"></i>
   </div>
 </div>
 
@@ -1162,7 +1176,9 @@ body.locked{overflow:hidden}
     <div class="stat"><b data-count="362">362</b><span>Exclusive Plots</span></div>
     <div class="stat"><b>&#8377;62L*</b><span>Starting Price</span></div>
     <div class="stat"><b>23</b><span>Acres</span></div>
-    <div class="stat"><b>Nelamangala</b><span>Growth Corridor</span></div>
+    <div class="stat m-only"><b>12 Min</b><span>To upcoming Nelamangala Metro</span></div>
+    <div class="stat m-only"><b>20,000</b><span>Sq.Ft. Parthenon &ndash; The Grand Clubhouse</span></div>
+    <div class="stat stat-loc"><b>Off Nelamangala Road</b><span>Bengaluru</span></div>
   </div>
 </section>
 
