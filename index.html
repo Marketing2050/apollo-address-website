@@ -1140,6 +1140,25 @@ body.locked{overflow:hidden}
   .hm-rule-gold{display:none}
   .hm-loc{margin-bottom:14px}
 }
+
+/* Minimal luxury mobile price block: no boxes, no button - just the price and the size line. */
+@media (max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait){
+  .hm-cta{display:none}
+  .hm-loc{margin-bottom:6px;font-size:clamp(10.5px,3vw,12.5px);letter-spacing:2.2px}
+  .hm-bottom{padding:0 24px 22px}
+  .hm-bar{display:flex;flex-direction:column-reverse;align-items:center;gap:6px;box-shadow:none;
+    padding-top:6px;position:relative;text-align:center}
+  .hm-bar::before{content:"";position:static;display:block;width:44px;height:1px;border:0;background:rgba(214,180,133,.7);
+    left:auto;top:auto;margin:0 auto 2px;order:3}
+  .hm-bar::after{display:none}
+  .hm-bar-r{flex:none;background:none;padding:0;align-items:center;text-align:center}
+  .hm-bar-r small{font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:3px}
+  .hm-bar-r b{font-size:clamp(26px,7.8vw,34px);line-height:1.05;color:var(--gold);font-weight:600;letter-spacing:.2px}
+  .hm-bar-l{flex:none;flex-direction:row;justify-content:center;align-items:baseline;gap:9px;
+    background:none;border:0;padding:0}
+  .hm-bar-l b{font-size:clamp(13px,3.8vw,15px);color:var(--cream);font-weight:600;letter-spacing:.4px}
+  .hm-bar-l small{margin:0;font-size:9.5px;letter-spacing:2.2px;color:rgba(250,247,240,.72)}
+}
 </style>
 </head>
 <body>
