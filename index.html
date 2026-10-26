@@ -1189,6 +1189,23 @@ body.locked{overflow:hidden}
   .hero .hero-bg img{object-position:30% 86%}
 }
 @media (max-width:767px) and (max-height:620px){.hm-byline{display:none}.hm-photo{min-height:360px}.hm-bottom{padding-bottom:18px}}
+
+/* ===== Seamless photo-to-panel flow (no hard edge) ===== */
+@media (max-width:767px),(min-width:768px) and (max-width:1023px) and (orientation:portrait){
+  .hm-photo::after{height:46%;background:linear-gradient(180deg,rgba(38,12,25,0) 0%,rgba(38,12,25,.05) 14%,rgba(38,12,25,.16) 28%,rgba(38,12,25,.34) 42%,rgba(38,12,25,.56) 58%,rgba(38,12,25,.78) 74%,rgba(38,12,25,.93) 88%,#260c19 100%)}
+  .hm-bottom{margin-top:-1px;background:#260c19;padding-top:2px}
+  .hm-byline{font-family:var(--serif,inherit);font-size:11.5px;line-height:1.7;letter-spacing:2.6px;margin-bottom:14px;text-shadow:none}
+  .hm-loc{margin-top:0}
+}
+@media (max-width:380px){.hm-byline{font-size:10px;letter-spacing:2px}}
+
+@media (max-width:767px){
+  .hm{background:#260c19}
+  .hm-bottom{margin-top:-64px;background:transparent;padding-top:0}
+  .hm-photo{max-height:calc(100vh - 200px);max-height:calc(100svh - 200px);min-height:340px}
+}
+@media (min-width:768px) and (orientation:landscape),(min-width:1024px){.hero-by{white-space:nowrap;letter-spacing:2.2px;font-size:11px}.hero-inner{width:min(480px,100%)}}
+@media (min-width:1024px){.hero-inner{position:relative;left:44px}}
 </style>
 </head>
 <body>
@@ -1247,7 +1264,7 @@ body.locked{overflow:hidden}
       </div>
     </div>
     <div class="hm-bottom">
-      <span class="hm-byline">By Address Maker</span>
+      <span class="hm-byline">Luxury Greek-Themed Villa Plots<br>with Golf Greens</span>
       <p class="hm-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-7.58 7-12a7 7 0 1 0-14 0c0 4.42 7 12 7 12Z" fill="currentColor"/><circle cx="12" cy="9" r="2.6" fill="#260c19"/></svg><span>Off Nelamangala Road, Bengaluru</span></p>
       <span class="hm-rule hm-rule-gold" aria-hidden="true"><i></i></span>
       <div class="hm-bar">
@@ -1264,7 +1281,7 @@ body.locked{overflow:hidden}
          no current offer to state), so the bar below carries only the
          two facts that are real: plot sizes and starting price. -->
     <div class="hero-inner">
-      <span class="eyebrow eyebrow-hero eyebrow-badge hero-by">By Address Maker</span>
+      <span class="eyebrow eyebrow-hero eyebrow-badge hero-by">Luxury Greek-Themed Villa Plots with Golf Greens</span>
       <span class="hero-rule" aria-hidden="true"><span class="hero-rule-dot"></span></span>
       <h1>Apollo Address</h1>
       <p class="hero-tagline">Greek-Themed Luxury Villa Plots</p>
