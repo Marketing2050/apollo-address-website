@@ -60,6 +60,9 @@ j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
 f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5LL4S6');
 </script>
 
+<!-- ChatGPT (OpenAI) Ads Pixel - base code, loads on every view. Conversion = oaiq("measure","lead_created") in the form-success handler below. -->
+<script>!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"Y7dSQBcWCeF2W1x6X3SuWx",debug:true});</script>
+
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Residence","name":"Apollo Address",
 "description":"Greek-themed luxury villa plotted development off Nelamangala Road, Bengaluru.",
@@ -2150,6 +2153,9 @@ body.locked{overflow:hidden}
           utm_campaign: attr.utm_campaign, gclid: attr.gclid, fbclid: attr.fbclid,
           value: 1, currency: "INR"
         });
+        // ChatGPT Ads conversion - same confirmed-CRM-write moment as Google/Meta.
+        // event_id = lead id, so a later server-side send can be de-duplicated.
+        try { if (window.oaiq) oaiq("measure", "lead_created", { type: "customer_action" }, { event_id: String(id) }); } catch (e) {}
         wrap.classList.add("is-done");
         form.reset();
         started = false;
